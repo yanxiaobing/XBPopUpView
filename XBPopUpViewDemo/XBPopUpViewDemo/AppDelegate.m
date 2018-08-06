@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    if ([UIDevice currentDevice].systemVersion.doubleValue < 9.0) {
+        self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    }
+    
+    UIStoryboard*storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController* vc = [storyboard instantiateInitialViewController];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
+    
+    
+    
+    
     return YES;
 }
 

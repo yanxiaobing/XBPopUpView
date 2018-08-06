@@ -8,6 +8,9 @@
 
 #import "XBDefaultTransition.h"
 
+static CGFloat const kMinScale = 0.85;
+static CGFloat const kMaxScale = 1.0;
+
 @implementation XBDefaultTransition
 
 + (instancetype)presentTransition{
@@ -28,28 +31,30 @@
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     if (_dismiss) {
         
-        XBPopUpViewController *popUpViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        UINavigationController *navigationController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        XBPopUpViewController *popUpViewController = navigationController.viewControllers.firstObject;
+        
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            popUpViewController.view.alpha = 0;
-            popUpViewController.popUpView.transform = CGAffineTransformMakeScale(0.85, 0.85);
+            navigationController.view.alpha = 0;
+            popUpViewController.popUpView.transform = CGAffineTransformMakeScale(kMinScale, kMinScale);
         } completion:^(BOOL finished) {
-            [popUpViewController.view removeFromSuperview];
+            [navigationController.view removeFromSuperview];
             [transitionContext completeTransition:YES];
         }];
         
     } else {
         
-        XBPopUpViewController *popUpViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        UINavigationController *navigationController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        XBPopUpViewController *popUpViewController = navigationController.viewControllers.firstObject;
+        
         UIView *containerView = [transitionContext containerView];
-        popUpViewController.view.frame = containerView.bounds;
-        [containerView addSubview:popUpViewController.view];
+        [containerView addSubview:navigationController.view];
         
-        popUpViewController.view.alpha = 0.0;
-        popUpViewController.popUpView.transform = CGAffineTransformMakeScale(0.85, 0.85);
-        
+        navigationController.view.alpha = 0.0;
+        popUpViewController.popUpView.transform = CGAffineTransformMakeScale(kMinScale, kMinScale);
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            popUpViewController.view.alpha = 1.0;
-            popUpViewController.popUpView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            navigationController.view.alpha = 1.0;
+            popUpViewController.popUpView.transform = CGAffineTransformMakeScale(kMaxScale, kMaxScale);
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:YES];
         }];
