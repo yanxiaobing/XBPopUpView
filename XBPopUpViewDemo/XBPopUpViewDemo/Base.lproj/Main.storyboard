@@ -46,11 +46,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doS-sl-7hn">
-                                <rect key="frame" x="33" y="283" width="310" height="30"/>
+                                <rect key="frame" x="25" y="338" width="326" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="队列的方式展示前面几种样式(展示顺序1-3-2)"/>
+                                <state key="normal" title="队列的方式展示前面几种样式(展示顺序1-4-3-2)"/>
                                 <connections>
                                     <action selector="showByQueue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SsR-qt-clO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eD-tX-piM">
+                                <rect key="frame" x="129" y="269" width="117" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="4自定义view样式"/>
+                                <connections>
+                                    <action selector="custonView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wfu-Wf-XPI"/>
                                 </connections>
                             </button>
                         </subviews>

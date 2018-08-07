@@ -47,13 +47,15 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 
 @required
 
-@property (nonatomic ,strong) UIView<XBPopUpViewDelegate> *popUpView;
-
 @property (nonatomic, assign) XBPopUpPriority priority;
 
 - (void)present;
 
 - (void)dismiss;
+
+@optional
+
+@property (nonatomic ,strong) UIView<XBPopUpViewDelegate> *popUpView;
 
 @end
 

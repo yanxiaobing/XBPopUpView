@@ -10,6 +10,7 @@
 #import "XBTestPopView.h"
 #import "XBPopUpViewController.h"
 #import "XBDefaultTransition.h"
+#import "XBTestPopUpView.h"
 
 @interface ViewController ()
 
@@ -33,11 +34,19 @@
     XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(100, 200)];
     [XBPopUpViewController showDefaultCustomPopUpView:popView emptyAreaEnabled:YES priority:XBPopUpPriorityHigh];
 }
+- (IBAction)custonView:(UIButton *)sender {
+    
+    XBTestPopUpView *popView = [[XBTestPopUpView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+    popView.priority = XBPopUpPriorityVeryHigh;
+    [[XBPopUpQueue sharedService] addView:popView];
+    
+}
 - (IBAction)showByQueue:(UIButton *)sender {
     
     [self defaultPresent:nil];
     [self defaultCustom:nil];
     [self emptyEnabled:nil];
+    [self custonView:nil];
 }
 
 

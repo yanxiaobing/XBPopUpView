@@ -17,6 +17,7 @@
 		ED7E76272118820A009ED4B0 /* XBPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E76262118820A009ED4B0 /* XBPopUpViewController.m */; };
 		ED7E762D211889ED009ED4B0 /* XBTestPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E762C211889ED009ED4B0 /* XBTestPopView.m */; };
 		ED7E763621189EA2009ED4B0 /* XBDefaultTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E763521189EA2009ED4B0 /* XBDefaultTransition.m */; };
+		EDBD5907211940550054CF7B /* XBTestPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBD5906211940550054CF7B /* XBTestPopUpView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		ED7E763421189EA2009ED4B0 /* XBDefaultTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBDefaultTransition.h; sourceTree = "<group>"; };
 		ED7E763521189EA2009ED4B0 /* XBDefaultTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBDefaultTransition.m; sourceTree = "<group>"; };
 		EDBD59042119324A0054CF7B /* XBPopUpProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBPopUpProtocol.h; sourceTree = "<group>"; };
+		EDBD5905211940550054CF7B /* XBTestPopUpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBTestPopUpView.h; sourceTree = "<group>"; };
+		EDBD5906211940550054CF7B /* XBTestPopUpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBTestPopUpView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 				ED7E760B21187D9D009ED4B0 /* ViewController.m */,
 				ED7E762B211889ED009ED4B0 /* XBTestPopView.h */,
 				ED7E762C211889ED009ED4B0 /* XBTestPopView.m */,
+				EDBD5905211940550054CF7B /* XBTestPopUpView.h */,
+				EDBD5906211940550054CF7B /* XBTestPopUpView.m */,
 				ED7E760D21187D9D009ED4B0 /* Main.storyboard */,
 				ED7E761021187DA2009ED4B0 /* Assets.xcassets */,
 				ED7E761221187DA2009ED4B0 /* LaunchScreen.storyboard */,
@@ -173,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7E762D211889ED009ED4B0 /* XBTestPopView.m in Sources */,
+				EDBD5907211940550054CF7B /* XBTestPopUpView.m in Sources */,
 				ED7E762221188195009ED4B0 /* XBPopUpQueue.m in Sources */,
 				ED7E760C21187D9D009ED4B0 /* ViewController.m in Sources */,
 				ED7E76272118820A009ED4B0 /* XBPopUpViewController.m in Sources */,
