@@ -6,10 +6,15 @@
 //  Copyright © 2018年 xbingo. All rights reserved.
 //
 
-#import "XBPopUpBaseView.h"
+#import <UIKit/UIKit.h>
+#import "XBPopUpProtocol.h"
 
-@interface XBTestPopView : XBPopUpBaseView
+@interface XBTestPopView : UIView<XBPopUpViewDelegate>
 
 - (instancetype)initWithSize:(CGSize)size;
+
+@property (nonatomic ,copy) XBPopUpViewWillHideBlock willHideBlock;
+
+@property (nonatomic ,copy) XBPopUpViewDidHidenBlock didHidenBlock;
 
 @end

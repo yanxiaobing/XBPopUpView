@@ -38,7 +38,7 @@
     };
 }
 
--(instancetype)initWithPopUpView:(XBPopUpBaseView *)popUpView
+-(instancetype)initWithPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                  emptyAreaEnabled:(BOOL)emptyAreaEnabled
                         priority:(XBPopUpPriority)priority
             presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
@@ -54,19 +54,19 @@
     return self;
 }
 
-+ (void)showDefaultCustomPopUpView:(XBPopUpBaseView *)popUpView
++ (void)showDefaultCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                   emptyAreaEnabled:(BOOL)emptyAreaEnabled
                           priority:(XBPopUpPriority)priority{
     [self showCustomPopUpView:popUpView emptyAreaEnabled:emptyAreaEnabled priority:priority presentTransitioning:[XBDefaultTransition presentTransition] dismissTransitioning:[XBDefaultTransition dismissTransition]];
 }
 
-+ (void)showDefaultPresentPopUpView:(XBPopUpBaseView *)popUpView
++ (void)showDefaultPresentPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                    emptyAreaEnabled:(BOOL)emptyAreaEnabled
                            priority:(XBPopUpPriority)priority{
     [self showCustomPopUpView:popUpView emptyAreaEnabled:emptyAreaEnabled priority:priority presentTransitioning:nil dismissTransitioning:nil];
 }
 
-+ (void)showCustomPopUpView:(XBPopUpBaseView *)popUpView
++ (void)showCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
            emptyAreaEnabled:(BOOL)emptyAreaEnabled
                    priority:(XBPopUpPriority)priority
        presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
