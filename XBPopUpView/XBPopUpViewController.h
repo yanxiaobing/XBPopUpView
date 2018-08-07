@@ -10,11 +10,12 @@
 #import "XBPopUpQueue.h"
 #import "XBDefaultTransition.h"
 
-@interface XBPopUpViewController : UIViewController<XBPopUpVCDelegate,UIViewControllerTransitioningDelegate>
+@interface XBPopUpViewController : UIViewController<XBPopUpDelegate,UIViewControllerTransitioningDelegate>
 
 @property (nonatomic ,strong) UIView<XBPopUpViewDelegate> *popUpView;
-@property (nonatomic, assign) BOOL emptyAreaEnabled;
 @property (nonatomic, assign) XBPopUpPriority priority;
+
+@property (nonatomic, assign) BOOL emptyAreaEnabled;
 @property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> presentTransitioning;
 @property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> dismissTransitioning;
 

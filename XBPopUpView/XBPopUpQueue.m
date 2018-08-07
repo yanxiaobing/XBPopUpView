@@ -34,7 +34,7 @@
     return self;
 }
 
-- (void)addView:(id<XBPopUpVCDelegate>)popUpView {
+- (void)addView:(id<XBPopUpDelegate>)popUpView {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([weakSelf.popUpQueue containsObject:popUpView]) {
@@ -47,11 +47,11 @@
                 [popUpView present];
             }
         } else {
-            [weakSelf.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpVCDelegate> view1, id<XBPopUpVCDelegate> view2) {
-                if ([view1 priority] > [view2 priority]) {
+            [weakSelf.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpDelegate> view1, id<XBPopUpDelegate> view2) {
+                if (view1.priority > view2.priority) {
                     return NSOrderedAscending;
                 }
-                if ([view1 priority] < [view2 priority]) {
+                if (view1.priority < view2.priority) {
                     return NSOrderedDescending;
                 }
                 return NSOrderedSame;
@@ -60,13 +60,13 @@
     });
 }
 
-- (void)removeView:(id<XBPopUpVCDelegate>)popUpView {
+- (void)removeView:(id<XBPopUpDelegate>)popUpView {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([weakSelf.popUpQueue containsObject:popUpView]) {
             [weakSelf.popUpQueue removeObject:popUpView];
             if (weakSelf.popUpQueue.count > 0) {
-                id<XBPopUpVCDelegate> popUpView = weakSelf.popUpQueue.firstObject;
+                id<XBPopUpDelegate> popUpView = weakSelf.popUpQueue.firstObject;
                 if ([popUpView respondsToSelector:@selector(present)]) {
                     [popUpView present];
                 }

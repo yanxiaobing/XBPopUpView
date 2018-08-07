@@ -14,46 +14,6 @@
 
 @implementation XBPopUpViewController
 
--(void)dealloc{
-    NSLog(@"%s",__func__);
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
-    self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
-    
-    _popUpView.center = self.view.center;
-    [self.view addSubview:_popUpView];
-    __weak typeof(self) weakSelf = self;
-    __weak typeof(_popUpView) weakView = _popUpView;
-    
-    _popUpView.willHideBlock = ^(XBPopUpViewHideType popUpViewHideType) {
-        [weakSelf dismissViewControllerAnimated:YES completion:^{
-            [weakSelf dismiss];
-            if (weakView.didHidenBlock) {
-                weakView.didHidenBlock(popUpViewHideType);
-            }
-        }];
-    };
-}
-
--(instancetype)initWithPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
-                 emptyAreaEnabled:(BOOL)emptyAreaEnabled
-                        priority:(XBPopUpPriority)priority
-            presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
-            dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning{
-    self = [super init];
-    if (self) {
-        _popUpView = popUpView;
-        _emptyAreaEnabled = emptyAreaEnabled;
-        _priority = priority;
-        _presentTransitioning = presentTransitioning;
-        _dismissTransitioning = dismissTransitioning;
-    }
-    return self;
-}
-
 + (void)showDefaultCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                   emptyAreaEnabled:(BOOL)emptyAreaEnabled
                           priority:(XBPopUpPriority)priority{
@@ -76,6 +36,41 @@
     [[XBPopUpQueue sharedService] addView:popUpViewController];
 }
 
+-(instancetype)initWithPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
+                emptyAreaEnabled:(BOOL)emptyAreaEnabled
+                        priority:(XBPopUpPriority)priority
+            presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
+            dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning{
+    self = [super init];
+    if (self) {
+        _popUpView = popUpView;
+        _emptyAreaEnabled = emptyAreaEnabled;
+        _priority = priority;
+        _presentTransitioning = presentTransitioning;
+        _dismissTransitioning = dismissTransitioning;
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
+    self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+    
+    _popUpView.center = self.view.center;
+    [self.view addSubview:_popUpView];
+    __weak typeof(self) weakSelf = self;
+    __weak typeof(_popUpView) weakView = _popUpView;
+    
+    _popUpView.willHideBlock = ^(XBPopUpViewHideType popUpViewHideType) {
+        [weakSelf dismissViewControllerAnimated:YES completion:^{
+            [weakSelf dismiss];
+            if (weakView.didHidenBlock) {
+                weakView.didHidenBlock(popUpViewHideType);
+            }
+        }];
+    };
+}
 
 -(void)present{
 
@@ -120,6 +115,9 @@
     }
 }
 
+-(void)dealloc{
+    NSLog(@"%s",__func__);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

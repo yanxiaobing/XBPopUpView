@@ -32,7 +32,7 @@ static CGFloat const kMaxScale = 1.0;
     if (_dismiss) {
         
         UINavigationController *navigationController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-        id<XBPopUpVCDelegate> popUpViewController = navigationController.viewControllers.firstObject;
+        id<XBPopUpDelegate> popUpViewController = navigationController.viewControllers.firstObject;
         
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             navigationController.view.alpha = 0;
@@ -45,7 +45,7 @@ static CGFloat const kMaxScale = 1.0;
     } else {
         
         UINavigationController *navigationController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-        id<XBPopUpVCDelegate> popUpViewController = navigationController.viewControllers.firstObject;
+        id<XBPopUpDelegate> popUpViewController = navigationController.viewControllers.firstObject;
         
         UIView *containerView = [transitionContext containerView];
         [containerView addSubview:navigationController.view];

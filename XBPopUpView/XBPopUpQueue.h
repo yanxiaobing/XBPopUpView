@@ -13,7 +13,7 @@
 
 + (instancetype)sharedService;
 
-- (void)addView:(id<XBPopUpVCDelegate>)popUpView;
-- (void)removeView:(id<XBPopUpVCDelegate>)popUpView;
+- (void)addView:(id<XBPopUpDelegate>)popUpView;
+- (void)removeView:(id<XBPopUpDelegate>)popUpView;
 
 @end
