@@ -10,22 +10,22 @@
  因此，在开发项目的过程中很有必要做一套弹窗的规范。
  
 ## 分析
-####问题：
+#### 问题：
 
 - 1：多人开发实现思路、代码风格不同不利于管理；
 - 2：多人开发不好把控弹窗时机；
 - 3：自定义场景多，样式多；
 
-####方案
+#### 方案
 - 1：定义好弹窗实现的协议，所有的自定义弹窗必须满足该协议
 - 2：建立一个弹窗管理队列，所有的弹窗都添加到这个队列中，并根据优先级展示
 - 3：弹窗框架要支持强大的自定义需求
 
-##实现
+## 实现
 
 ### 代理协议
 
-####XBPopUpDelegate
+#### XBPopUpDelegate
 
 - `priority（@required）`
 
@@ -45,7 +45,7 @@
 
 
 
-####XBPopUpViewDelegate
+#### XBPopUpViewDelegate
 
 - `willHideBlock`
 
@@ -56,7 +56,7 @@
 	回调隐藏事件，外部业务根据这个做相应处理
 
 
-####所有弹窗都必须遵守`XBPopUpDelegate`，所有的`popUpView`都必须遵守`XBPopUpViewDelegate`。
+#### 所有弹窗都必须遵守`XBPopUpDelegate`，所有的`popUpView`都必须遵守`XBPopUpViewDelegate`。
 
 ### 弹窗队列`XBPopUpQueue`
 
@@ -93,9 +93,10 @@
  dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning;`
 
 #### XBTestPopUpView
-	参照`XBTestPopUpView`
+
+参照`XBTestPopUpView`
 	
 
-##Demo
+## Demo
 
 https://github.com/yanxiaobing/XBPopUpView
