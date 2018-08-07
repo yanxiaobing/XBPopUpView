@@ -9,8 +9,8 @@
 #import "XBPopUpQueue.h"
 
 @interface XBPopUpQueue()
-@property (nonatomic ,strong) NSMutableArray *popUpQueue;
 
+@property (nonatomic ,strong) NSMutableArray *popUpQueue;
 
 @end
 
@@ -34,7 +34,7 @@
     return self;
 }
 
-- (void)addView:(id<XBPopUpViewDelegate>)popUpView {
+- (void)addView:(id<XBPopUpVCDelegate>)popUpView {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([weakSelf.popUpQueue containsObject:popUpView]) {
@@ -47,7 +47,7 @@
                 [popUpView present];
             }
         } else {
-            [weakSelf.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpViewDelegate> view1, id<XBPopUpViewDelegate> view2) {
+            [weakSelf.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpVCDelegate> view1, id<XBPopUpVCDelegate> view2) {
                 if ([view1 priority] > [view2 priority]) {
                     return NSOrderedAscending;
                 }
@@ -60,13 +60,13 @@
     });
 }
 
-- (void)removeView:(id<XBPopUpViewDelegate>)popUpView {
+- (void)removeView:(id<XBPopUpVCDelegate>)popUpView {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([weakSelf.popUpQueue containsObject:popUpView]) {
             [weakSelf.popUpQueue removeObject:popUpView];
             if (weakSelf.popUpQueue.count > 0) {
-                id<XBPopUpViewDelegate> popUpView = weakSelf.popUpQueue.firstObject;
+                id<XBPopUpVCDelegate> popUpView = weakSelf.popUpQueue.firstObject;
                 if ([popUpView respondsToSelector:@selector(present)]) {
                     [popUpView present];
                 }

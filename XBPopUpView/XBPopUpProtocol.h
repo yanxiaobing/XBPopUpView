@@ -1,12 +1,13 @@
 //
-//  XBPopUpViewDelegate.h
+//  XBPopUpProtocol.h
 //  XBPopUpViewDemo
 //
-//  Created by xbingo on 2018/8/6.
+//  Created by xbingo on 2018/8/7.
 //  Copyright © 2018年 xbingo. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "XBPopUpBaseView.h"
 
 typedef NS_ENUM(NSInteger , XBPopUpPriority){
     XBPopUpPriorityVeryHigh = 4,
@@ -16,15 +17,16 @@ typedef NS_ENUM(NSInteger , XBPopUpPriority){
 };
 
 
-@protocol XBPopUpViewDelegate <NSObject>
+@protocol XBPopUpVCDelegate <NSObject>
+
 @required
+
+@property (nonatomic ,strong) XBPopUpBaseView *popUpView;
+
 - (XBPopUpPriority)priority;
-@optional
 
 - (void)present;
 
 - (void)dismiss;
 
 @end
-
-

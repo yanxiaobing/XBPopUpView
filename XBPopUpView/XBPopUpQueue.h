@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XBPopUpViewDelegate.h"
+#import "XBPopUpProtocol.h"
 
 @interface XBPopUpQueue : NSObject
 
 + (instancetype)sharedService;
 
-- (void)addView:(id<XBPopUpViewDelegate>)popUpView;
-- (void)removeView:(id<XBPopUpViewDelegate>)popUpView;
+- (void)addView:(id<XBPopUpVCDelegate>)popUpView;
+- (void)removeView:(id<XBPopUpVCDelegate>)popUpView;
 
 @end

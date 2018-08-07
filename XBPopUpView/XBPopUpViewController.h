@@ -11,7 +11,7 @@
 #import "XBPopUpBaseView.h"
 #import "XBDefaultTransition.h"
 
-@interface XBPopUpViewController : UIViewController<XBPopUpViewDelegate,UIViewControllerTransitioningDelegate>
+@interface XBPopUpViewController : UIViewController<XBPopUpVCDelegate,UIViewControllerTransitioningDelegate>
 
 @property (nonatomic ,strong) XBPopUpBaseView *popUpView;
 @property (nonatomic, assign) BOOL emptyAreaEnabled;
