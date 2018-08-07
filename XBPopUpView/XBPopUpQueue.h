@@ -13,7 +13,20 @@
 
 + (instancetype)sharedService;
 
+
+/**
+ 添加弹窗视图到队列中
+
+ @param popUpView 弹窗视图
+ */
 - (void)addView:(id<XBPopUpDelegate>)popUpView;
+
+
+/**
+ 从队列中移出弹窗视图
+
+ @param popUpView 弹窗视图
+ */
 - (void)removeView:(id<XBPopUpDelegate>)popUpView;
 
 @end

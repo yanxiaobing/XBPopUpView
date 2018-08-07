@@ -47,10 +47,23 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 
 @required
 
+
+/**
+ 当有多个的时候展示优先级
+ */
 @property (nonatomic, assign) XBPopUpPriority priority;
 
+
+
+/**
+ 实现该方法，自定义出场效果
+ */
 - (void)present;
 
+
+/**
+ 实现该方法，自定义退场效果，记得将视图移出队列
+ */
 - (void)dismiss;
 
 @optional
