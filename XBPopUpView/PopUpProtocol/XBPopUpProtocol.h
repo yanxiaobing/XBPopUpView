@@ -26,6 +26,8 @@ typedef void(^XBPopUpViewWillHideBlock)(XBPopUpViewHideType popUpViewHideType);
 
 typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 
+/*************************XBPopUpViewDelegate****************************/
+
 @protocol XBPopUpViewDelegate <NSObject>
 
 @required
@@ -35,31 +37,35 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
  */
 @property (nonatomic ,copy) XBPopUpViewWillHideBlock willHideBlock;
 
-
 /**
  隐藏popView之后的回调
  */
 @property (nonatomic ,copy) XBPopUpViewDidHidenBlock didHidenBlock;
 
+
+@optional
+/**
+ 弹窗相对中心位置的偏移
+ */
+@property (nonatomic, assign) CGPoint centerOffset;
+
 @end
+
+/*************************XBPopUpDelegate****************************/
 
 @protocol XBPopUpDelegate <NSObject>
 
 @required
-
 
 /**
  当有多个的时候展示优先级
  */
 @property (nonatomic, assign) XBPopUpPriority priority;
 
-
-
 /**
  实现该方法，自定义出场效果
  */
 - (void)present;
-
 
 /**
  实现该方法，自定义退场效果，记得将视图移出队列

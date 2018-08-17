@@ -14,27 +14,8 @@
 
 @implementation XBPopUpViewController
 
-+ (void)showDefaultCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
-                  emptyAreaEnabled:(BOOL)emptyAreaEnabled
-                          priority:(XBPopUpPriority)priority{
-    [self showCustomPopUpView:popUpView emptyAreaEnabled:emptyAreaEnabled priority:priority presentTransitioning:[XBDefaultTransition presentTransition] dismissTransitioning:[XBDefaultTransition dismissTransition]];
-}
-
-+ (void)showDefaultPresentPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
-                   emptyAreaEnabled:(BOOL)emptyAreaEnabled
-                           priority:(XBPopUpPriority)priority{
-    [self showCustomPopUpView:popUpView emptyAreaEnabled:emptyAreaEnabled priority:priority presentTransitioning:nil dismissTransitioning:nil];
-}
-
-+ (void)showCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
-           emptyAreaEnabled:(BOOL)emptyAreaEnabled
-                   priority:(XBPopUpPriority)priority
-       presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
-       dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning{
-    
-    XBPopUpViewController * popUpViewController = [[XBPopUpViewController alloc]initWithPopUpView:popUpView emptyAreaEnabled:emptyAreaEnabled priority:priority presentTransitioning:presentTransitioning dismissTransitioning:dismissTransitioning];
-    [[XBPopUpQueue sharedService] addView:popUpViewController];
-}
+@synthesize priority = _priority;
+@synthesize popUpView = _popUpView;
 
 -(instancetype)initWithPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                 emptyAreaEnabled:(BOOL)emptyAreaEnabled
@@ -43,9 +24,9 @@
             dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning{
     self = [super init];
     if (self) {
+        _priority = priority;
         _popUpView = popUpView;
         _emptyAreaEnabled = emptyAreaEnabled;
-        _priority = priority;
         _presentTransitioning = presentTransitioning;
         _dismissTransitioning = dismissTransitioning;
     }
@@ -57,7 +38,13 @@
     [self.navigationController setNavigationBarHidden:YES];
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
     
-    _popUpView.center = self.view.center;
+    if ([_popUpView respondsToSelector:@selector(centerOffset)]) {
+        _popUpView.center = CGPointMake(self.view.center.x + _popUpView.centerOffset.x, self.view.center.y + _popUpView.centerOffset.y);
+    }else{
+        _popUpView.center = self.view.center;
+    }
+    
+    
     [self.view addSubview:_popUpView];
     __weak typeof(self) weakSelf = self;
     __weak typeof(_popUpView) weakView = _popUpView;
@@ -77,7 +64,7 @@
     UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:self];
     
-    if (_presentTransitioning && _dismissTransitioning) {
+    if (_presentTransitioning || _dismissTransitioning) {
         navigationController.modalPresentationStyle = UIModalPresentationCustom;
         navigationController.transitioningDelegate = self;
     }else{

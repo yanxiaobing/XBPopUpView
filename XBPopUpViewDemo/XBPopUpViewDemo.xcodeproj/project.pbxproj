@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED2EA90021272085000DAA80 /* XBPopUpService.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2EA8FF21272085000DAA80 /* XBPopUpService.m */; };
 		ED7E760921187D9D009ED4B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E760821187D9D009ED4B0 /* AppDelegate.m */; };
 		ED7E760C21187D9D009ED4B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E760B21187D9D009ED4B0 /* ViewController.m */; };
 		ED7E760F21187D9D009ED4B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED7E760D21187D9D009ED4B0 /* Main.storyboard */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED2EA8FE21272085000DAA80 /* XBPopUpService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBPopUpService.h; sourceTree = "<group>"; };
+		ED2EA8FF21272085000DAA80 /* XBPopUpService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBPopUpService.m; sourceTree = "<group>"; };
 		ED7E760421187D9D009ED4B0 /* XBPopUpViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XBPopUpViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED7E760721187D9D009ED4B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ED7E760821187D9D009ED4B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -55,6 +58,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED2EA8FB21271DAB000DAA80 /* PopUpQueue */ = {
+			isa = PBXGroup;
+			children = (
+				ED7E762021188195009ED4B0 /* XBPopUpQueue.h */,
+				ED7E762121188195009ED4B0 /* XBPopUpQueue.m */,
+			);
+			path = PopUpQueue;
+			sourceTree = "<group>";
+		};
+		ED2EA8FC21271EBB000DAA80 /* PopUpProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				EDBD59042119324A0054CF7B /* XBPopUpProtocol.h */,
+			);
+			path = PopUpProtocol;
+			sourceTree = "<group>";
+		};
+		ED2EA901212727EF000DAA80 /* DefaultPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				ED7E762521188209009ED4B0 /* XBPopUpViewController.h */,
+				ED7E76262118820A009ED4B0 /* XBPopUpViewController.m */,
+				ED7E763421189EA2009ED4B0 /* XBDefaultTransition.h */,
+				ED7E763521189EA2009ED4B0 /* XBDefaultTransition.m */,
+			);
+			path = DefaultPopUp;
+			sourceTree = "<group>";
+		};
 		ED7E75FB21187D9D009ED4B0 = {
 			isa = PBXGroup;
 			children = (
@@ -95,13 +126,11 @@
 		ED7E761F21188178009ED4B0 /* XBPopUpView */ = {
 			isa = PBXGroup;
 			children = (
-				ED7E762021188195009ED4B0 /* XBPopUpQueue.h */,
-				ED7E762121188195009ED4B0 /* XBPopUpQueue.m */,
-				EDBD59042119324A0054CF7B /* XBPopUpProtocol.h */,
-				ED7E762521188209009ED4B0 /* XBPopUpViewController.h */,
-				ED7E76262118820A009ED4B0 /* XBPopUpViewController.m */,
-				ED7E763421189EA2009ED4B0 /* XBDefaultTransition.h */,
-				ED7E763521189EA2009ED4B0 /* XBDefaultTransition.m */,
+				ED2EA8FE21272085000DAA80 /* XBPopUpService.h */,
+				ED2EA8FF21272085000DAA80 /* XBPopUpService.m */,
+				ED2EA8FC21271EBB000DAA80 /* PopUpProtocol */,
+				ED2EA8FB21271DAB000DAA80 /* PopUpQueue */,
+				ED2EA901212727EF000DAA80 /* DefaultPopUp */,
 			);
 			name = XBPopUpView;
 			path = ../../XBPopUpView;
@@ -184,6 +213,7 @@
 				ED7E76272118820A009ED4B0 /* XBPopUpViewController.m in Sources */,
 				ED7E761721187DA2009ED4B0 /* main.m in Sources */,
 				ED7E760921187D9D009ED4B0 /* AppDelegate.m in Sources */,
+				ED2EA90021272085000DAA80 /* XBPopUpService.m in Sources */,
 				ED7E763621189EA2009ED4B0 /* XBDefaultTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

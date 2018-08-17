@@ -18,6 +18,10 @@
 
 @implementation XBTestPopView
 
+@synthesize willHideBlock;
+@synthesize didHidenBlock;
+@synthesize centerOffset;
+
 - (instancetype)initWithSize:(CGSize)size
 {
     self = [super initWithFrame:CGRectMake(0, 0, size.width, size.height)];

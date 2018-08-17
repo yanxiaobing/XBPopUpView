@@ -34,7 +34,10 @@ static CGFloat const kMaxScale = 1.0;
         UINavigationController *navigationController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         id<XBPopUpDelegate> popUpViewController = navigationController.viewControllers.firstObject;
         
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:duration
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
             navigationController.view.alpha = 0;
             popUpViewController.popUpView.transform = CGAffineTransformMakeScale(kMinScale, kMinScale);
         } completion:^(BOOL finished) {
@@ -52,7 +55,10 @@ static CGFloat const kMaxScale = 1.0;
         
         navigationController.view.alpha = 0.0;
         popUpViewController.popUpView.transform = CGAffineTransformMakeScale(kMinScale, kMinScale);
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:duration
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
             navigationController.view.alpha = 1.0;
             popUpViewController.popUpView.transform = CGAffineTransformMakeScale(kMaxScale, kMaxScale);
         } completion:^(BOOL finished) {

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "XBPopUpService.h"
 #import "XBTestPopView.h"
 #import "XBPopUpViewController.h"
 #import "XBDefaultTransition.h"
@@ -24,15 +25,16 @@
 - (IBAction)defaultPresent:(UIButton *)sender {
     
     XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(300, 400)];
-    [XBPopUpViewController showDefaultPresentPopUpView:popView emptyAreaEnabled:NO priority:XBPopUpPriorityNormal];
+//    popView.centerOffset = CGPointMake(50, 100);
+    [[XBPopUpService sharedService] showDefaultPresentPopUpView:popView priority:XBPopUpPriorityNormal emptyAreaEnabled:NO];
 }
 - (IBAction)defaultCustom:(UIButton *)sender {
     XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(200, 300)];
-    [XBPopUpViewController showDefaultCustomPopUpView:popView emptyAreaEnabled:NO priority:XBPopUpPriorityNormal];
+    [[XBPopUpService sharedService] showDefaultCustomPopUpView:popView priority:XBPopUpPriorityNormal emptyAreaEnabled:NO ];
 }
 - (IBAction)emptyEnabled:(UIButton *)sender {
     XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(100, 200)];
-    [XBPopUpViewController showDefaultCustomPopUpView:popView emptyAreaEnabled:YES priority:XBPopUpPriorityHigh];
+    [[XBPopUpService sharedService] showDefaultCustomPopUpView:popView priority:XBPopUpPriorityHigh emptyAreaEnabled:YES];
 }
 - (IBAction)custonView:(UIButton *)sender {
     
@@ -42,7 +44,6 @@
     
 }
 - (IBAction)showByQueue:(UIButton *)sender {
-    
     [self defaultPresent:nil];
     [self defaultCustom:nil];
     [self emptyEnabled:nil];

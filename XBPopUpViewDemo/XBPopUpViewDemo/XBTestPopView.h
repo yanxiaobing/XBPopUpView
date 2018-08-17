@@ -13,8 +13,4 @@
 
 - (instancetype)initWithSize:(CGSize)size;
 
-@property (nonatomic ,copy) XBPopUpViewWillHideBlock willHideBlock;
-
-@property (nonatomic ,copy) XBPopUpViewDidHidenBlock didHidenBlock;
-
 @end
