@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XBPopUpProtocol.h"
+#import "XBPopUpQueue.h"
 
 @interface XBPopUpService : NSObject
 

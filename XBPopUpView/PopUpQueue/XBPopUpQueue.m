@@ -35,19 +35,16 @@
 }
 
 - (void)addView:(id<XBPopUpDelegate>)popUpView {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([weakSelf.popUpQueue containsObject:popUpView]) {
+        if ([self.popUpQueue containsObject:popUpView]) {
             return;
         }
-        
-        [weakSelf.popUpQueue addObject:popUpView];
-        if (weakSelf.popUpQueue.count == 1) {
+        [self.popUpQueue addObject:popUpView];
+        if (self.popUpQueue.count == 1) {
             if ([popUpView respondsToSelector:@selector(present)]) {
                 [popUpView present];
             }
         } else {
-            [weakSelf.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpDelegate> view1, id<XBPopUpDelegate> view2) {
+            [self.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpDelegate> view1, id<XBPopUpDelegate> view2) {
                 if (view1.priority > view2.priority) {
                     return NSOrderedAscending;
                 }
@@ -57,22 +54,18 @@
                 return NSOrderedSame;
             }];
         }
-    });
 }
 
 - (void)removeView:(id<XBPopUpDelegate>)popUpView {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([weakSelf.popUpQueue containsObject:popUpView]) {
-            [weakSelf.popUpQueue removeObject:popUpView];
-            if (weakSelf.popUpQueue.count > 0) {
-                id<XBPopUpDelegate> popUpView = weakSelf.popUpQueue.firstObject;
+        if ([self.popUpQueue containsObject:popUpView]) {
+            [self.popUpQueue removeObject:popUpView];
+            if (self.popUpQueue.count > 0) {
+                id<XBPopUpDelegate> popUpView = self.popUpQueue.firstObject;
                 if ([popUpView respondsToSelector:@selector(present)]) {
                     [popUpView present];
                 }
             }
         }
-    });
 }
 
 @end

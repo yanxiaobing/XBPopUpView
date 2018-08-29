@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name         = 'XBPopUpView'
-    s.version      = '0.0.2'
-    s.summary      = 'add centerOffset feature'
+    s.version      = '0.0.3'
+    s.summary      = 'remove sync sort feature'
     s.homepage     = 'https://github.com/yanxiaobing/XBPopUpView'
     s.license      = 'MIT'
     s.authors      = {'XBingo' => 'dove025@qq.com'}
