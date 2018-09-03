@@ -10,8 +10,6 @@
 
 @interface XBPopUpQueue()
 
-@property (nonatomic ,strong) NSMutableArray *popUpQueue;
-
 @end
 
 @implementation XBPopUpQueue

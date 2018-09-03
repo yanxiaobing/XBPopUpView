@@ -11,6 +11,16 @@
 
 @interface XBPopUpQueue : NSObject
 
+/**
+ 弹窗数组
+ */
+@property (nonatomic ,strong) NSMutableArray *popUpQueue;
+
+/**
+ 弹窗队列单例方法
+
+ @return 弹窗队列
+ */
 + (instancetype)sharedService;
 
 /**
