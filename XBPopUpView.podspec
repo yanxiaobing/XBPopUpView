@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name         = 'XBPopUpView'
-    s.version      = '0.0.4'
-    s.summary      = 'expose popup queue'
+    s.version      = '0.0.5'
+    s.summary      = 'change keyWindow to delegate.window'
     s.homepage     = 'https://github.com/yanxiaobing/XBPopUpView'
     s.license      = 'MIT'
     s.authors      = {'XBingo' => 'dove025@qq.com'}
