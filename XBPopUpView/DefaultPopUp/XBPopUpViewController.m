@@ -61,7 +61,7 @@
 
 -(void)present{
 
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:self];
     
     if (_presentTransitioning || _dismissTransitioning) {
