@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name         = 'XBPopUpView'
-    s.version      = '0.0.5'
-    s.summary      = 'change keyWindow to delegate.window'
+    s.version      = '0.0.6'
+    s.summary      = '1：添加lowerPriorityHidden字段处理展示优先还是优先级优先  2：添加fromType 字段标识是通过rootvc还是currentVC做present   3：增加相关api'
     s.homepage     = 'https://github.com/yanxiaobing/XBPopUpView'
     s.license      = 'MIT'
     s.authors      = {'XBingo' => 'dove025@qq.com'}
