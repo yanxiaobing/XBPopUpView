@@ -10,21 +10,42 @@
 
 @interface XBPopUpViewController ()
 
+/**
+ 是否激活点击空白区域隐藏
+ */
+@property (nonatomic, assign) BOOL emptyAreaEnabled;
+
+/**
+ 自定义出场动画
+ */
+@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> presentTransitioning;
+
+/**
+ 自定义退场动画
+ */
+@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> dismissTransitioning;
+
 @end
 
 @implementation XBPopUpViewController
 
 @synthesize priority = _priority;
 @synthesize popUpView = _popUpView;
+@synthesize lowerPriorityHidden = _lowerPriorityHidden;
+@synthesize fromType = _fromType;
 
 -(instancetype)initWithPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                 emptyAreaEnabled:(BOOL)emptyAreaEnabled
                         priority:(XBPopUpPriority)priority
+             lowerPriorityHidden:(BOOL)lowerPriorityHidden
+                        fromType:(XBPopUpFromType)fromType
             presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
             dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning{
     self = [super init];
     if (self) {
+        _fromType = fromType;
         _priority = priority;
+        _lowerPriorityHidden = lowerPriorityHidden;
         _popUpView = popUpView;
         _emptyAreaEnabled = emptyAreaEnabled;
         _presentTransitioning = presentTransitioning;
@@ -35,7 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
+//    [self.navigationController setNavigationBarHidden:YES];
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
     
     if ([_popUpView respondsToSelector:@selector(centerOffset)]) {
@@ -62,7 +83,15 @@
 -(void)present{
 
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    
+    if ([self respondsToSelector:@selector(fromType)]) {
+        if (_fromType == XBPopUpFromCurrentVC) {
+            rootViewController = [self.class currentViewController];
+        }
+    }
+    
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:self];
+    [navigationController setNavigationBarHidden:YES];
     
     if (_presentTransitioning || _dismissTransitioning) {
         navigationController.modalPresentationStyle = UIModalPresentationCustom;
@@ -76,6 +105,14 @@
 
 -(void)dismiss{
     [[XBPopUpQueue sharedService] removeView:self];
+}
+
+-(void)temporarilyDismissAnimated:(BOOL)animated completion:(void (^)(void))completion{
+    [self dismissViewControllerAnimated:animated completion:^{
+        if (completion) {
+            completion();
+        }
+    }];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
@@ -111,5 +148,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+
++ (UIViewController*)currentViewController {
+    UIViewController* rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    return [self currentViewControllerFrom:rootViewController];
+}
+
+// 通过递归拿到当前控制器
++ (UIViewController*)currentViewControllerFrom:(UIViewController*)viewController {
+    
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController *)viewController;
+        return [self currentViewControllerFrom:navigationController.viewControllers.lastObject];
+    } // 如果传入的控制器是导航控制器,则返回最后一个
+    else if([viewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController *)viewController;
+        return [self currentViewControllerFrom:tabBarController.selectedViewController];
+    } // 如果传入的控制器是tabBar控制器,则返回选中的那个
+    else if(viewController.presentedViewController != nil) {
+        return [self currentViewControllerFrom:viewController.presentedViewController];
+    } // 如果传入的控制器发生了modal,则就可以拿到modal的那个控制器
+    else {
+        return viewController;
+    }
+}
 
 @end

@@ -10,6 +10,8 @@
 
 @interface XBPopUpQueue()
 
+@property (nonatomic ,strong) id<XBPopUpDelegate> currentPopUpView;
+
 @end
 
 @implementation XBPopUpQueue
@@ -38,20 +40,42 @@
         }
         [self.popUpQueue addObject:popUpView];
         if (self.popUpQueue.count == 1) {
-            if ([popUpView respondsToSelector:@selector(present)]) {
-                [popUpView present];
-            }
+            [self showAndRecordPopUpViewIfNeed:popUpView];
         } else {
-            [self.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpDelegate> view1, id<XBPopUpDelegate> view2) {
-                if (view1.priority > view2.priority) {
-                    return NSOrderedAscending;
+            
+            [self sortPopUpQueue];
+            
+            if (self.currentPopUpView.lowerPriorityHidden && self.currentPopUpView != self.popUpQueue.firstObject) {
+                __weak typeof(self) weakSelf = self;
+                if ([self.currentPopUpView respondsToSelector:@selector(temporarilyDismissAnimated:completion:)]) {
+                    [self.currentPopUpView temporarilyDismissAnimated:NO completion:^{
+                        [weakSelf showAndRecordPopUpViewIfNeed:weakSelf.popUpQueue.firstObject];
+                    }];
                 }
-                if (view1.priority < view2.priority) {
-                    return NSOrderedDescending;
-                }
-                return NSOrderedSame;
-            }];
+            }
         }
+}
+
+-(void)showAndRecordPopUpViewIfNeed:(id<XBPopUpDelegate>)popUpView{
+    
+    if ([popUpView respondsToSelector:@selector(present)]) {
+        [popUpView present];
+        if (popUpView.lowerPriorityHidden) {
+            self.currentPopUpView = popUpView;
+        }
+    }
+}
+
+-(void)sortPopUpQueue{
+    [self.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpDelegate> view1, id<XBPopUpDelegate> view2) {
+        if (view1.priority > view2.priority) {
+            return NSOrderedAscending;
+        }
+        if (view1.priority < view2.priority) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedSame;
+    }];
 }
 
 - (void)removeView:(id<XBPopUpDelegate>)popUpView {
@@ -62,6 +86,8 @@
                 if ([popUpView respondsToSelector:@selector(present)]) {
                     [popUpView present];
                 }
+            }else{
+                self.currentPopUpView = nil;
             }
         }
 }

@@ -11,6 +11,6 @@
 
 @interface XBTestPopUpView : UIView<XBPopUpDelegate>
 
-@property (nonatomic, assign) XBPopUpPriority priority;
+
 
 @end

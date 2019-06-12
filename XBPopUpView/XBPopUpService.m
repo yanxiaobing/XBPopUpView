@@ -25,6 +25,8 @@
                   emptyAreaEnabled:(BOOL)emptyAreaEnabled{
     [self showCustomPopUpView:popUpView
                      priority:priority
+          lowerPriorityHidden:NO
+                     fromType:XBPopUpFromRoot
              emptyAreaEnabled:emptyAreaEnabled
          presentTransitioning:[XBDefaultTransition presentTransition]
          dismissTransitioning:[XBDefaultTransition dismissTransition]];
@@ -35,12 +37,43 @@
                    emptyAreaEnabled:(BOOL)emptyAreaEnabled{
     [self showCustomPopUpView:popUpView
                      priority:priority
+          lowerPriorityHidden:NO
+     fromType:XBPopUpFromRoot
+             emptyAreaEnabled:emptyAreaEnabled
+         presentTransitioning:nil dismissTransitioning:nil];
+}
+
+- (void)showDefaultCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
+                          priority:(XBPopUpPriority)priority
+               lowerPriorityHidden:(BOOL)lowerPriorityHidden
+                          fromType:(XBPopUpFromType)fromType
+                  emptyAreaEnabled:(BOOL)emptyAreaEnabled{
+    [self showCustomPopUpView:popUpView
+                     priority:priority
+          lowerPriorityHidden:lowerPriorityHidden
+                     fromType:fromType
+             emptyAreaEnabled:emptyAreaEnabled
+         presentTransitioning:[XBDefaultTransition presentTransition]
+         dismissTransitioning:[XBDefaultTransition dismissTransition]];
+}
+
+- (void)showDefaultPresentPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
+                           priority:(XBPopUpPriority)priority
+                lowerPriorityHidden:(BOOL)lowerPriorityHidden
+                           fromType:(XBPopUpFromType)fromType
+                   emptyAreaEnabled:(BOOL)emptyAreaEnabled{
+    [self showCustomPopUpView:popUpView
+                     priority:priority
+          lowerPriorityHidden:lowerPriorityHidden
+                     fromType:fromType
              emptyAreaEnabled:emptyAreaEnabled
          presentTransitioning:nil dismissTransitioning:nil];
 }
 
 - (void)showCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                    priority:(XBPopUpPriority)priority
+        lowerPriorityHidden:(BOOL)lowerPriorityHidden
+                   fromType:(XBPopUpFromType)fromType
            emptyAreaEnabled:(BOOL)emptyAreaEnabled
        presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
        dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning{
@@ -48,6 +81,8 @@
     XBPopUpViewController * popUpVC = [[XBPopUpViewController alloc]initWithPopUpView:popUpView
                                                                      emptyAreaEnabled:emptyAreaEnabled
                                                                              priority:priority
+                                                                  lowerPriorityHidden:lowerPriorityHidden
+                                                                             fromType:fromType
                                                                  presentTransitioning:presentTransitioning
                                                                  dismissTransitioning:dismissTransitioning];
     [[XBPopUpQueue sharedService] addView:popUpVC];

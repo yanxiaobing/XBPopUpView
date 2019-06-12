@@ -12,24 +12,11 @@
 
 @interface XBPopUpViewController : UIViewController<XBPopUpDelegate,UIViewControllerTransitioningDelegate>
 
-/**
- 是否激活点击空白区域隐藏
- */
-@property (nonatomic, assign) BOOL emptyAreaEnabled;
-
-/**
- 自定义出场动画
- */
-@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> presentTransitioning;
-
-/**
- 自定义退场动画
- */
-@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> dismissTransitioning;
-
 -(instancetype)initWithPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                 emptyAreaEnabled:(BOOL)emptyAreaEnabled
                         priority:(XBPopUpPriority)priority
+             lowerPriorityHidden:(BOOL)lowerPriorityHidden
+                        fromType:(XBPopUpFromType)fromType
             presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
             dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning;
 

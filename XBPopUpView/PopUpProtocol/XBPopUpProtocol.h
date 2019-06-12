@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger , XBPopUpFromType){
+    XBPopUpFromRoot,
+    XBPopUpFromCurrentVC
+};
+
 typedef NS_ENUM(NSInteger , XBPopUpPriority){
     XBPopUpPriorityVeryHigh = 4,
     XBPopUpPriorityHigh = 3,
@@ -35,12 +40,12 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 /**
  隐藏popView
  */
-@property (nonatomic ,copy) XBPopUpViewWillHideBlock willHideBlock;
+@property (nonatomic ,copy) XBPopUpViewWillHideBlock _Nonnull willHideBlock;
 
 /**
  隐藏popView之后的回调
  */
-@property (nonatomic ,copy) XBPopUpViewDidHidenBlock didHidenBlock;
+@property (nonatomic ,copy) XBPopUpViewDidHidenBlock _Nullable didHidenBlock;
 
 
 @optional
@@ -74,7 +79,27 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 
 @optional
 
-@property (nonatomic ,strong) UIView<XBPopUpViewDelegate> *popUpView;
+@property (nonatomic ,strong) UIView<XBPopUpViewDelegate> * _Nullable popUpView;
+
+/**
+ 通过根控制器或者当前控制器做present（仅针对控制器容器）
+ */
+@property (nonatomic, assign) XBPopUpFromType fromType;
+
+/**
+ YES：已展示的状态下，如果有优先级更高的弹窗，暂时隐藏自己  NO：展示状态下一定要处理完才隐藏自己  默认值：NO
+ */
+@property (nonatomic, assign) BOOL lowerPriorityHidden;
+
+/**
+ 临时隐藏弹窗，但是不移出队列
+ 
+ @param animated 是否动画
+ @param completion 隐藏动画完成回调
+ */
+- (void)temporarilyDismissAnimated:(BOOL)animated completion:(void (^ __nullable)(void))completion;
+
+
 
 @end
 

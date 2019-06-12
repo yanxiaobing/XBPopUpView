@@ -26,7 +26,9 @@
     
     XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(300, 400)];
 //    popView.centerOffset = CGPointMake(50, 100);
-    [[XBPopUpService sharedService] showDefaultPresentPopUpView:popView priority:XBPopUpPriorityNormal emptyAreaEnabled:NO];
+//    [[XBPopUpService sharedService] showDefaultPresentPopUpView:popView priority:XBPopUpPriorityNormal emptyAreaEnabled:NO];
+//    [[XBPopUpService sharedService] showCustomPopUpView:popView priority:XBPopUpPriorityNormal lowerPriorityHidden:YES fromType:XBPopUpFromRoot emptyAreaEnabled:NO presentTransitioning:nil dismissTransitioning:nil];
+    [[XBPopUpService sharedService] showDefaultCustomPopUpView:popView priority:XBPopUpPriorityNormal lowerPriorityHidden:YES fromType:XBPopUpFromRoot emptyAreaEnabled:NO];
 }
 - (IBAction)defaultCustom:(UIButton *)sender {
     XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(200, 300)];

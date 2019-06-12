@@ -19,6 +19,9 @@
 
 @implementation XBTestPopUpView
 
+@synthesize priority;
+@synthesize lowerPriorityHidden;
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -45,7 +48,7 @@
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     self.alpha = 0;
     self.transform = CGAffineTransformMakeScale(0.1, 0.1);
-    [UIView animateWithDuration:3 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
         self.transform = CGAffineTransformMakeScale(1, 1);
     } completion:^(BOOL finished) {
@@ -56,7 +59,7 @@
 }
 
 -(void)dismiss{
-    [UIView animateWithDuration:4 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 0;
         self.transform = CGAffineTransformMakeScale(0.1, 0.1);
     } completion:^(BOOL finished) {
