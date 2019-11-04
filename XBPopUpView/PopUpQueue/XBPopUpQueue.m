@@ -54,7 +54,7 @@
         if (self.currentPopUpView.lowerPriorityHidden && self.currentPopUpView != self.popUpQueue.firstObject) {
             __weak typeof(self) weakSelf = self;
             if ([self.currentPopUpView respondsToSelector:@selector(temporarilyDismissAnimated:completion:)]) {
-                [self.currentPopUpView temporarilyDismissAnimated:NO completion:^{
+                [self.currentPopUpView temporarilyDismissAnimated:YES completion:^{
                     [weakSelf showAndRecordPopUpViewIfNeed:weakSelf.popUpQueue.firstObject];
                 }];
             }

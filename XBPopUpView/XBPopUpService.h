@@ -91,4 +91,10 @@
        presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
        dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning;
 
+
+#pragma mark -- XBBasePopViewController实现
+
+- (void)showBasePopUpVC:(UIViewController<XBPopUpDelegate> *)popUpVC;
+
+
 @end

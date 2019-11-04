@@ -12,6 +12,7 @@
 #import "XBPopUpViewController.h"
 #import "XBDefaultTransition.h"
 #import "XBTestPopUpView.h"
+#import "XBTestViewController.h"
 
 @interface ViewController ()
 
@@ -24,11 +25,15 @@
 }
 - (IBAction)defaultPresent:(UIButton *)sender {
     
-    XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(300, 400)];
-//    popView.centerOffset = CGPointMake(50, 100);
-//    [[XBPopUpService sharedService] showDefaultPresentPopUpView:popView priority:XBPopUpPriorityNormal emptyAreaEnabled:NO];
-//    [[XBPopUpService sharedService] showCustomPopUpView:popView priority:XBPopUpPriorityNormal lowerPriorityHidden:YES fromType:XBPopUpFromRoot emptyAreaEnabled:NO presentTransitioning:nil dismissTransitioning:nil];
-    [[XBPopUpService sharedService] showDefaultCustomPopUpView:popView priority:XBPopUpPriorityNormal lowerPriorityHidden:YES fromType:XBPopUpFromRoot emptyAreaEnabled:NO];
+    XBTestViewController *test = [XBTestViewController new];
+    test.des = @"xbingo";
+    [XBPopUpService.sharedService showBasePopUpVC:test];
+    
+//    XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(300, 400)];
+////    popView.centerOffset = CGPointMake(50, 100);
+////    [[XBPopUpService sharedService] showDefaultPresentPopUpView:popView priority:XBPopUpPriorityNormal emptyAreaEnabled:NO];
+////    [[XBPopUpService sharedService] showCustomPopUpView:popView priority:XBPopUpPriorityNormal lowerPriorityHidden:YES fromType:XBPopUpFromRoot emptyAreaEnabled:NO presentTransitioning:nil dismissTransitioning:nil];
+//    [[XBPopUpService sharedService] showDefaultCustomPopUpView:popView priority:XBPopUpPriorityNormal lowerPriorityHidden:YES fromType:XBPopUpFromRoot emptyAreaEnabled:NO];
 }
 - (IBAction)defaultCustom:(UIButton *)sender {
     XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(200, 300)];
