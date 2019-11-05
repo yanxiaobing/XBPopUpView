@@ -10,6 +10,7 @@
 		ED2EA90021272085000DAA80 /* XBPopUpService.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2EA8FF21272085000DAA80 /* XBPopUpService.m */; };
 		ED3AB099236C3D4C00CBB5BD /* XBBasePopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3AB098236C3D4C00CBB5BD /* XBBasePopViewController.m */; };
 		ED3AB09B236C409B00CBB5BD /* XBPopUpView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ED3AB09A236C409A00CBB5BD /* XBPopUpView.podspec */; };
+		ED4141C523711D6100DB070B /* UIViewController+XBCurrent.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4141C423711D6100DB070B /* UIViewController+XBCurrent.m */; };
 		ED7E760921187D9D009ED4B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E760821187D9D009ED4B0 /* AppDelegate.m */; };
 		ED7E760C21187D9D009ED4B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E760B21187D9D009ED4B0 /* ViewController.m */; };
 		ED7E760F21187D9D009ED4B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED7E760D21187D9D009ED4B0 /* Main.storyboard */; };
@@ -22,7 +23,6 @@
 		ED7E763621189EA2009ED4B0 /* XBDefaultTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E763521189EA2009ED4B0 /* XBDefaultTransition.m */; };
 		ED889FA8237007A50004AFF6 /* XBTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED889FA7237007A50004AFF6 /* XBTestViewController.m */; };
 		ED889FAB23700CDF0004AFF6 /* XBBaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ED889FAA23700CDF0004AFF6 /* XBBaseTransition.m */; };
-		ED889FAE237015720004AFF6 /* UIViewController+current.m in Sources */ = {isa = PBXBuildFile; fileRef = ED889FAD237015710004AFF6 /* UIViewController+current.m */; };
 		ED889FB123702E680004AFF6 /* XBTestTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ED889FB023702E680004AFF6 /* XBTestTransition.m */; };
 		EDBD5907211940550054CF7B /* XBTestPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBD5906211940550054CF7B /* XBTestPopUpView.m */; };
 /* End PBXBuildFile section */
@@ -33,6 +33,8 @@
 		ED3AB097236C3D4C00CBB5BD /* XBBasePopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBBasePopViewController.h; sourceTree = "<group>"; };
 		ED3AB098236C3D4C00CBB5BD /* XBBasePopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBBasePopViewController.m; sourceTree = "<group>"; };
 		ED3AB09A236C409A00CBB5BD /* XBPopUpView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = XBPopUpView.podspec; path = ../../XBPopUpView.podspec; sourceTree = "<group>"; };
+		ED4141C323711D6100DB070B /* UIViewController+XBCurrent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XBCurrent.h"; sourceTree = "<group>"; };
+		ED4141C423711D6100DB070B /* UIViewController+XBCurrent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XBCurrent.m"; sourceTree = "<group>"; };
 		ED7E760421187D9D009ED4B0 /* XBPopUpViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XBPopUpViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED7E760721187D9D009ED4B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ED7E760821187D9D009ED4B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -55,8 +57,6 @@
 		ED889FA7237007A50004AFF6 /* XBTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBTestViewController.m; sourceTree = "<group>"; };
 		ED889FA923700CDF0004AFF6 /* XBBaseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBBaseTransition.h; sourceTree = "<group>"; };
 		ED889FAA23700CDF0004AFF6 /* XBBaseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBBaseTransition.m; sourceTree = "<group>"; };
-		ED889FAC237015710004AFF6 /* UIViewController+current.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+current.h"; sourceTree = "<group>"; };
-		ED889FAD237015710004AFF6 /* UIViewController+current.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+current.m"; sourceTree = "<group>"; };
 		ED889FAF23702E680004AFF6 /* XBTestTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBTestTransition.h; sourceTree = "<group>"; };
 		ED889FB023702E680004AFF6 /* XBTestTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBTestTransition.m; sourceTree = "<group>"; };
 		EDBD59042119324A0054CF7B /* XBPopUpProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBPopUpProtocol.h; sourceTree = "<group>"; };
@@ -75,38 +75,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED2EA8FB21271DAB000DAA80 /* PopUpQueue */ = {
-			isa = PBXGroup;
-			children = (
-				ED7E762021188195009ED4B0 /* XBPopUpQueue.h */,
-				ED7E762121188195009ED4B0 /* XBPopUpQueue.m */,
-			);
-			path = PopUpQueue;
-			sourceTree = "<group>";
-		};
-		ED2EA8FC21271EBB000DAA80 /* PopUpProtocol */ = {
+		ED2EA8FC21271EBB000DAA80 /* PopUpCommon */ = {
 			isa = PBXGroup;
 			children = (
 				EDBD59042119324A0054CF7B /* XBPopUpProtocol.h */,
+				ED7E762021188195009ED4B0 /* XBPopUpQueue.h */,
+				ED7E762121188195009ED4B0 /* XBPopUpQueue.m */,
+				ED4141C323711D6100DB070B /* UIViewController+XBCurrent.h */,
+				ED4141C423711D6100DB070B /* UIViewController+XBCurrent.m */,
 			);
-			path = PopUpProtocol;
+			path = PopUpCommon;
 			sourceTree = "<group>";
 		};
-		ED2EA901212727EF000DAA80 /* DefaultPopUp */ = {
+		ED2EA901212727EF000DAA80 /* PopUpView */ = {
 			isa = PBXGroup;
 			children = (
+				ED2EA8FE21272085000DAA80 /* XBPopUpService.h */,
+				ED2EA8FF21272085000DAA80 /* XBPopUpService.m */,
 				ED7E762521188209009ED4B0 /* XBPopUpViewController.h */,
 				ED7E76262118820A009ED4B0 /* XBPopUpViewController.m */,
 				ED7E763421189EA2009ED4B0 /* XBDefaultTransition.h */,
 				ED7E763521189EA2009ED4B0 /* XBDefaultTransition.m */,
+			);
+			path = PopUpView;
+			sourceTree = "<group>";
+		};
+		ED4141C223711B8600DB070B /* PopUpVC */ = {
+			isa = PBXGroup;
+			children = (
 				ED3AB097236C3D4C00CBB5BD /* XBBasePopViewController.h */,
 				ED3AB098236C3D4C00CBB5BD /* XBBasePopViewController.m */,
 				ED889FA923700CDF0004AFF6 /* XBBaseTransition.h */,
 				ED889FAA23700CDF0004AFF6 /* XBBaseTransition.m */,
-				ED889FAC237015710004AFF6 /* UIViewController+current.h */,
-				ED889FAD237015710004AFF6 /* UIViewController+current.m */,
 			);
-			path = DefaultPopUp;
+			path = PopUpVC;
 			sourceTree = "<group>";
 		};
 		ED7E75FB21187D9D009ED4B0 = {
@@ -154,11 +156,9 @@
 		ED7E761F21188178009ED4B0 /* XBPopUpView */ = {
 			isa = PBXGroup;
 			children = (
-				ED2EA8FE21272085000DAA80 /* XBPopUpService.h */,
-				ED2EA8FF21272085000DAA80 /* XBPopUpService.m */,
-				ED2EA8FC21271EBB000DAA80 /* PopUpProtocol */,
-				ED2EA8FB21271DAB000DAA80 /* PopUpQueue */,
-				ED2EA901212727EF000DAA80 /* DefaultPopUp */,
+				ED2EA8FC21271EBB000DAA80 /* PopUpCommon */,
+				ED4141C223711B8600DB070B /* PopUpVC */,
+				ED2EA901212727EF000DAA80 /* PopUpView */,
 			);
 			name = XBPopUpView;
 			path = ../../XBPopUpView;
@@ -241,7 +241,7 @@
 				EDBD5907211940550054CF7B /* XBTestPopUpView.m in Sources */,
 				ED889FA8237007A50004AFF6 /* XBTestViewController.m in Sources */,
 				ED7E762221188195009ED4B0 /* XBPopUpQueue.m in Sources */,
-				ED889FAE237015720004AFF6 /* UIViewController+current.m in Sources */,
+				ED4141C523711D6100DB070B /* UIViewController+XBCurrent.m in Sources */,
 				ED7E760C21187D9D009ED4B0 /* ViewController.m in Sources */,
 				ED7E76272118820A009ED4B0 /* XBPopUpViewController.m in Sources */,
 				ED3AB099236C3D4C00CBB5BD /* XBBasePopViewController.m in Sources */,

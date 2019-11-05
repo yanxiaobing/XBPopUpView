@@ -1,24 +1,24 @@
-Pod::Spec.new do |s|
-    s.name         = 'XBPopUpView'
-    s.version      = '0.0.6'
-    s.summary      = '1：添加lowerPriorityHidden字段处理展示优先还是优先级优先  2：添加fromType 字段标识是通过rootvc还是currentVC做present   3：增加相关api'
-    s.homepage     = 'https://github.com/yanxiaobing/XBPopUpView'
-    s.license      = 'MIT'
-    s.authors      = {'XBingo' => 'dove025@qq.com'}
-    s.platform     = :ios, '8.0'
-    s.source       = {:git => 'https://github.com/yanxiaobing/XBPopUpView.git', :tag => s.version}
-    s.requires_arc = true
-
-    s.subspec 'PopUpProtocol' do |ss|
-    ss.source_files = 'XBPopUpView/PopUpProtocol/*.{h,m}'
+Pod::Spec.new do |popup|
+    popup.name         = 'XBPopUpView'
+    popup.version      = '1.0.0'
+    popup.summary      = '1：增加通过VC基类的方式将弹窗的相关属性内聚，便于使用约束布局，简化使用  2：整理文件目录，调整工程结构'
+    popup.homepage     = 'https://github.com/yanxiaobing/XBPopUpView'
+    popup.license      = 'MIT'
+    popup.authors      = {'XBingo' => 'dove025@qq.com'}
+    popup.platform     = :ios, '8.0'
+    popup.source       = {:git => 'https://github.com/yanxiaobing/XBPopUpView.git', :tag => s.version}
+    popup.requires_arc = true
+    popup.source_files = 'XBPopUpView/*.{h,m}'
+    
+    popup.subspec 'PopUpCommon' do |common|
+    common.source_files = 'XBPopUpView/PopUpCommon/*.{h,m}'
   end
-    s.subspec 'PopUpQueue' do |ss|
-    ss.source_files = 'XBPopUpView/PopUpQueue/*.{h,m}'
-    ss.dependency 'XBPopUpView/PopUpProtocol'
+    popup.subspec 'PopUpVC' do |vc|
+    vc.source_files = 'XBPopUpView/PopUpVC/*.{h,m}'
+    vc.dependency 'XBPopUpView/PopUpCommon'
   end
-    s.subspec 'DefaultPopUp' do |ss|
-    ss.source_files = 'XBPopUpView/DefaultPopUp/*.{h,m}'
-    ss.dependency 'XBPopUpView/PopUpQueue'
+    popup.subspec 'PopUpView' do |view|
+    view.source_files = 'XBPopUpView/PopUpView/*.{h,m}'
+    view.dependency 'XBPopUpView/PopUpCommon'
   end
-    s.source_files = 'XBPopUpView/*.{h,m}'
 end

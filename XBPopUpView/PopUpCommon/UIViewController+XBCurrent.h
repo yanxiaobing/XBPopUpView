@@ -1,8 +1,8 @@
 //
-//  UIViewController+current.h
+//  UIViewController+XBCurrent.h
 //  XBPopUpViewDemo
 //
-//  Created by xbingo on 2019/11/4.
+//  Created by xbingo on 2019/11/5.
 //  Copyright © 2019 xbingo. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (current)
+@interface UIViewController (XBCurrent)
 
 + (UIViewController*)xb_currentViewController;
 

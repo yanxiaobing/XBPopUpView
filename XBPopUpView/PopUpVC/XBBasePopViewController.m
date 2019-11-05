@@ -8,7 +8,7 @@
 
 #import "XBBasePopViewController.h"
 #import "XBBaseTransition.h"
-#import "UIViewController+current.h"
+#import "UIViewController+XBCurrent.h"
 
 @interface XBBasePopViewController ()
 

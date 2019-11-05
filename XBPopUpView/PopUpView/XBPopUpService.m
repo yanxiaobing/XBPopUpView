@@ -88,10 +88,4 @@
     [[XBPopUpQueue sharedService] addView:popUpVC];
 }
 
-#pragma mark -- XBBasePopViewController实现
-
-- (void)showBasePopUpVC:(UIViewController<XBPopUpDelegate> *)popUpVC{
-    [[XBPopUpQueue sharedService] addView:popUpVC];
-}
-
 @end

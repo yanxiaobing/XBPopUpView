@@ -1,14 +1,14 @@
 //
-//  UIViewController+current.m
+//  UIViewController+XBCurrent.m
 //  XBPopUpViewDemo
 //
-//  Created by xbingo on 2019/11/4.
+//  Created by xbingo on 2019/11/5.
 //  Copyright © 2019 xbingo. All rights reserved.
 //
 
-#import "UIViewController+current.h"
+#import "UIViewController+XBCurrent.h"
 
-@implementation UIViewController (current)
+@implementation UIViewController (XBCurrent)
 
 + (UIViewController*)xb_currentViewController {
     UIViewController* rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
