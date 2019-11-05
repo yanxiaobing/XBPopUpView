@@ -6,9 +6,8 @@ Pod::Spec.new do |popup|
     popup.license      = 'MIT'
     popup.authors      = {'XBingo' => 'dove025@qq.com'}
     popup.platform     = :ios, '8.0'
-    popup.source       = {:git => 'https://github.com/yanxiaobing/XBPopUpView.git', :tag => s.version}
+    popup.source       = {:git => 'https://github.com/yanxiaobing/XBPopUpView.git', :tag => popup.version}
     popup.requires_arc = true
-    popup.source_files = 'XBPopUpView/*.{h,m}'
     
     popup.subspec 'PopUpCommon' do |common|
     common.source_files = 'XBPopUpView/PopUpCommon/*.{h,m}'
