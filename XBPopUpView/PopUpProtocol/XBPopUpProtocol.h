@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger , XBPopUpPriority){
     XBPopUpPriorityHigh = 3,
     XBPopUpPriorityNormal = 2,
     XBPopUpPriorityLow = 1,
+    XBPopUpPriorityVeryLow = 0,
 };
 
 typedef NS_ENUM(NSInteger , XBPopUpViewHideType){

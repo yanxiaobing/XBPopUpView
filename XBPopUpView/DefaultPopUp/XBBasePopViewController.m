@@ -54,6 +54,10 @@
     [self.view addSubview:_popUpContentView];
 }
 
+-(void)showInPopUpQueue:(XBPopUpViewDidHidenBlock)didHidenBlock{
+    self.didHidenBlock = didHidenBlock;
+    [XBPopUpQueue.sharedService addView:self];
+}
 
 -(void)present{
 
@@ -79,7 +83,9 @@
 }
 
 -(void)dismiss{
-    [[XBPopUpQueue sharedService] removeView:self];
+    if ([XBPopUpQueue.sharedService.popUpQueue containsObject:self]) {
+       [[XBPopUpQueue sharedService] removeView:self];
+    }
 }
 
 -(void)temporarilyDismissAnimated:(BOOL)animated completion:(void (^)(void))completion{

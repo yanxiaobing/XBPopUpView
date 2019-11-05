@@ -27,7 +27,9 @@
     
     XBTestViewController *test = [XBTestViewController new];
     test.des = @"xbingo";
-    [XBPopUpService.sharedService showBasePopUpVC:test];
+    [test showInPopUpQueue:^(XBPopUpViewHideType popUpViewHideType) {
+        NSLog(@"xbingooooooooooooooooooo");
+    }];
     
 //    XBTestPopView *popView = [[XBTestPopView alloc] initWithSize:CGSizeMake(300, 400)];
 ////    popView.centerOffset = CGPointMake(50, 100);

@@ -8,6 +8,10 @@
 
 #import "XBBaseTransition.h"
 
+@interface XBBaseTransition()
+
+@end
+
 @implementation XBBaseTransition
 
 + (instancetype)presentTransition{
