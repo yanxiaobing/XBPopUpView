@@ -80,7 +80,30 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 
 @optional
 
-@property (nonatomic ,strong) UIView<XBPopUpViewDelegate> * _Nullable popUpView;
+/**
+作为容器的时候提供，如XBPopUpViewController
+*/
+@property (nonatomic ,strong) UIView<XBPopUpViewDelegate> * _Nonnull popUpView;
+
+/**
+作为基类的时候提供，如XBBasePopViewController
+*/
+@property (nonatomic ,strong, readonly) UIView * _Nonnull popUpContentView;
+
+/**
+ 自定义出场动画
+ */
+@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> _Nonnull presentTransitioning;
+
+/**
+ 自定义退场动画
+ */
+@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> _Nonnull dismissTransitioning;
+
+/**
+ 是否激活点击空白区域隐藏
+ */
+@property (nonatomic, assign) BOOL emptyAreaEnabled;
 
 /**
  通过根控制器或者当前控制器做present（仅针对控制器容器）
@@ -93,7 +116,7 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 @property (nonatomic, assign) BOOL lowerPriorityHidden;
 
 /**
- 临时隐藏弹窗，但是不移出队列
+ 临时隐藏弹窗，但是不移出队列（lowerPriorityHidden == YES 才有效）
  
  @param animated 是否动画
  @param completion 隐藏动画完成回调

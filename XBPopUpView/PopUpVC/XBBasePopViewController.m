@@ -12,13 +12,20 @@
 
 @interface XBBasePopViewController ()
 
-
 @end
 
 @implementation XBBasePopViewController
 
-@synthesize willHideBlock;
-@synthesize didHidenBlock;
+@synthesize willHideBlock = _willHideBlock;
+@synthesize didHidenBlock = _didHidenBlock;
+
+@synthesize priority = _priority;
+@synthesize popUpContentView = _popUpContentView;
+@synthesize lowerPriorityHidden = _lowerPriorityHidden;
+@synthesize fromType = _fromType;
+@synthesize emptyAreaEnabled = _emptyAreaEnabled;
+@synthesize presentTransitioning = _presentTransitioning;
+@synthesize dismissTransitioning = _dismissTransitioning;
 
 - (instancetype)init
 {
@@ -33,7 +40,7 @@
         _dismissTransitioning = [XBBaseTransition dismissTransition];
         
         __weak typeof(self) weakSelf = self;
-        willHideBlock = ^(XBPopUpViewHideType popUpViewHideType) {
+        _willHideBlock = ^(XBPopUpViewHideType popUpViewHideType) {
             [weakSelf dismissViewControllerAnimated:YES completion:^{
                 [weakSelf dismiss];
                 if (weakSelf.didHidenBlock) {
@@ -55,7 +62,7 @@
 }
 
 -(void)showInPopUpQueue:(XBPopUpViewDidHidenBlock)didHidenBlock{
-    self.didHidenBlock = didHidenBlock;
+    _didHidenBlock = didHidenBlock;
     [XBPopUpQueue.sharedService addView:self];
 }
 

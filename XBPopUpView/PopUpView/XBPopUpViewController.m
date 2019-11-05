@@ -11,21 +11,6 @@
 
 @interface XBPopUpViewController ()
 
-/**
- 是否激活点击空白区域隐藏
- */
-@property (nonatomic, assign) BOOL emptyAreaEnabled;
-
-/**
- 自定义出场动画
- */
-@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> presentTransitioning;
-
-/**
- 自定义退场动画
- */
-@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> dismissTransitioning;
-
 @end
 
 @implementation XBPopUpViewController
@@ -34,6 +19,9 @@
 @synthesize popUpView = _popUpView;
 @synthesize lowerPriorityHidden = _lowerPriorityHidden;
 @synthesize fromType = _fromType;
+@synthesize emptyAreaEnabled = _emptyAreaEnabled;
+@synthesize presentTransitioning = _presentTransitioning;
+@synthesize dismissTransitioning = _dismissTransitioning;
 
 -(instancetype)initWithPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
                 emptyAreaEnabled:(BOOL)emptyAreaEnabled

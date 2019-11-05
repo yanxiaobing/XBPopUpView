@@ -33,7 +33,11 @@
 	
 - `popUpView（@optional）`
 
-	`popUpView`为自定义弹窗的内容，通常在使用`UIViewController`做弹窗容器的时候需要传入该值；
+	自定义弹窗的内容，作为容器的时候提供，如XBPopUpViewController
+	
+- `popUpContentView（@optional）`
+
+	自定义弹窗的容器，作为基类的时候提供，如XBBasePopViewController
 	
 - `- (void)present;（@required）`
 	
@@ -42,7 +46,8 @@
 - `- (void)dismiss;（@required）`
 
 	自定义退场效果
-
+	
+- 更多属性、方法前往查看源码
 
 
 #### XBPopUpViewDelegate
@@ -73,29 +78,43 @@
 	
 ## 使用
 
-#### XBPopUpViewController
+基于常用的场景，本库已经封装了相关功能，主要有`PopUpVC`和`PopUpView`两种方式。对于复杂的自定义需求，可参照上面“实现”方案和我对常用场景的封装方案，再根据自己的项目情况进行自定义封装。
 
-相关类：`XBPopUpViewController`、`XBTestPopView`、`XBDefaultTransition`
+### PopUpVC（参照PopUpVCDemo）
+
+该方式提供了`XBBasePopViewController` `XBBaseTransition`两个基类，可子类化的方式实现弹窗具体细节。
+
+在子类VC的`init`方法中对各种弹窗的属性进行设置，在`viewDidLoaded`方法中对弹窗进行布局。然后实例化子类，并调用`-(void)showInPopUpQueue:(XBPopUpViewDidHidenBlock)didHidenBlock;`即可。
+
+`XBBaseTransition`实现了默认弹窗动画（背景透明度渐变，popUpContentView缩放动画）。如果需要自定义弹窗动画，子类化该类，并重写方法`- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext;`即可。
+
+### PopUpView（参照PopUpViewDemo）
+
+改方式需要自定义`UIView<XBPopUpViewDelegate>`,并通过`XBPopUpService`提供的api进行使用，并且所有弹窗属性也是通过api参数进行传递。
+
+```
+/**
+ XBPopUpService
+ 自定义出场、退场效果
  
-`+ (void)showDefaultCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
-                  emptyAreaEnabled:(BOOL)emptyAreaEnabled
-                          priority:(XBPopUpPriority)priority;`
+ @param popUpView 自定义弹窗
+ @param priority 优先级
+ @param lowerPriorityHidden 已经展示时，如果有更高优先级的则暂时隐藏
+ @param fromType 通过根控制器或者当前控制器做present（仅针对控制器容器）
+ @param emptyAreaEnabled 是否激活点击空白区域隐藏
+ @param presentTransitioning 出场效果
+ @param dismissTransitioning 退场效果
+ */
+- (void)showCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
+                   priority:(XBPopUpPriority)priority
+        lowerPriorityHidden:(BOOL)lowerPriorityHidden
+                   fromType:(XBPopUpFromType)fromType
+           emptyAreaEnabled:(BOOL)emptyAreaEnabled
+       presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
+       dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning;
+```
 
- 
-`+ (void)showDefaultPresentPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
-            emptyAreaEnabled:(BOOL)emptyAreaEnabled
-                    priority:(XBPopUpPriority)priority;`
-
-`+ (void)showCustomPopUpView:(UIView<XBPopUpViewDelegate> *)popUpView
-     emptyAreaEnabled:(BOOL)emptyAreaEnabled
-             priority:(XBPopUpPriority)priority
- presentTransitioning:(id<UIViewControllerAnimatedTransitioning>)presentTransitioning
- dismissTransitioning:(id<UIViewControllerAnimatedTransitioning>)dismissTransitioning;`
-
-#### XBTestPopUpView
-
-参照`XBTestPopUpView`
-	
+### 更多XBPopUpDelegate实现（参照PopUpDemo）
 
 ## Demo
 

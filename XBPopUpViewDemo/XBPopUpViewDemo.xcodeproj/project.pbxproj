@@ -111,6 +111,35 @@
 			path = PopUpVC;
 			sourceTree = "<group>";
 		};
+		ED4141C9237165A700DB070B /* PopUpVCDemo */ = {
+			isa = PBXGroup;
+			children = (
+				ED889FA6237007A50004AFF6 /* XBTestViewController.h */,
+				ED889FA7237007A50004AFF6 /* XBTestViewController.m */,
+				ED889FAF23702E680004AFF6 /* XBTestTransition.h */,
+				ED889FB023702E680004AFF6 /* XBTestTransition.m */,
+			);
+			path = PopUpVCDemo;
+			sourceTree = "<group>";
+		};
+		ED4141CA237165D000DB070B /* PopUpViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				ED7E762B211889ED009ED4B0 /* XBTestPopView.h */,
+				ED7E762C211889ED009ED4B0 /* XBTestPopView.m */,
+			);
+			path = PopUpViewDemo;
+			sourceTree = "<group>";
+		};
+		ED4141CB237165F700DB070B /* PopUpDemo */ = {
+			isa = PBXGroup;
+			children = (
+				EDBD5905211940550054CF7B /* XBTestPopUpView.h */,
+				EDBD5906211940550054CF7B /* XBTestPopUpView.m */,
+			);
+			path = PopUpDemo;
+			sourceTree = "<group>";
+		};
 		ED7E75FB21187D9D009ED4B0 = {
 			isa = PBXGroup;
 			children = (
@@ -136,14 +165,9 @@
 				ED7E760821187D9D009ED4B0 /* AppDelegate.m */,
 				ED7E760A21187D9D009ED4B0 /* ViewController.h */,
 				ED7E760B21187D9D009ED4B0 /* ViewController.m */,
-				ED889FA6237007A50004AFF6 /* XBTestViewController.h */,
-				ED889FA7237007A50004AFF6 /* XBTestViewController.m */,
-				ED889FAF23702E680004AFF6 /* XBTestTransition.h */,
-				ED889FB023702E680004AFF6 /* XBTestTransition.m */,
-				ED7E762B211889ED009ED4B0 /* XBTestPopView.h */,
-				ED7E762C211889ED009ED4B0 /* XBTestPopView.m */,
-				EDBD5905211940550054CF7B /* XBTestPopUpView.h */,
-				EDBD5906211940550054CF7B /* XBTestPopUpView.m */,
+				ED4141C9237165A700DB070B /* PopUpVCDemo */,
+				ED4141CA237165D000DB070B /* PopUpViewDemo */,
+				ED4141CB237165F700DB070B /* PopUpDemo */,
 				ED7E760D21187D9D009ED4B0 /* Main.storyboard */,
 				ED7E761021187DA2009ED4B0 /* Assets.xcassets */,
 				ED7E761221187DA2009ED4B0 /* LaunchScreen.storyboard */,

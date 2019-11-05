@@ -7,6 +7,7 @@
 //
 
 #import "XBBaseTransition.h"
+#import "XBBasePopViewController.h"
 
 @interface XBBaseTransition()
 
