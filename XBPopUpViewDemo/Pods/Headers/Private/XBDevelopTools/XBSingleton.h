@@ -1,0 +1,1 @@
+../../../XBDevelopTools/XBDevelopTools/Singleton/XBSingleton.h

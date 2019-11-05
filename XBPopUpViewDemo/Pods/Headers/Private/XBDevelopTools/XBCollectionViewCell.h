@@ -1,0 +1,1 @@
+../../../XBDevelopTools/XBDevelopTools/ListElement/XBCollectionViewCell.h

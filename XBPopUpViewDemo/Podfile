@@ -4,6 +4,6 @@ platform :ios, '8.0'
 target 'XBPopUpViewDemo' do
   
 pod 'Masonry'
-pod 'XBExpandViews'
+pod 'XBDevelopTools'
 
 end

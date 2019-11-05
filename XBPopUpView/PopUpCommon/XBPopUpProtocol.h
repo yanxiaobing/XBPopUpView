@@ -93,12 +93,12 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 /**
  自定义出场动画
  */
-@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> _Nonnull presentTransitioning;
+@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> _Nullable presentTransitioning;
 
 /**
  自定义退场动画
  */
-@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> _Nonnull dismissTransitioning;
+@property (nonatomic ,strong) id<UIViewControllerAnimatedTransitioning> _Nullable dismissTransitioning;
 
 /**
  是否激活点击空白区域隐藏

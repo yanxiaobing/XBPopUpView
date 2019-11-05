@@ -29,7 +29,7 @@
         _actionBtn = [UIButton new];
         _actionBtn.backgroundColor = [UIColor redColor];
         _actionBtn.frame = CGRectMake(0, 0, CGRectGetMaxX(self.bounds), CGRectGetMaxX(self.bounds));
-        [_actionBtn setTitle:@"点我选中" forState:UIControlStateNormal];
+        [_actionBtn setTitle:@"自己看源码/README吧，我不想写demo了" forState:UIControlStateNormal];
         [_actionBtn addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_actionBtn];
         

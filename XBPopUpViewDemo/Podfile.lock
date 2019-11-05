@@ -1,0 +1,33 @@
+PODS:
+  - Masonry (1.1.0)
+  - XBDevelopTools (0.0.6):
+    - XBDevelopTools/Color (= 0.0.6)
+    - XBDevelopTools/ListElement (= 0.0.6)
+    - XBDevelopTools/Notice (= 0.0.6)
+    - XBDevelopTools/Path (= 0.0.6)
+    - XBDevelopTools/Singleton (= 0.0.6)
+    - XBDevelopTools/View (= 0.0.6)
+  - XBDevelopTools/Color (0.0.6)
+  - XBDevelopTools/ListElement (0.0.6)
+  - XBDevelopTools/Notice (0.0.6):
+    - XBDevelopTools/Singleton
+  - XBDevelopTools/Path (0.0.6)
+  - XBDevelopTools/Singleton (0.0.6)
+  - XBDevelopTools/View (0.0.6)
+
+DEPENDENCIES:
+  - Masonry
+  - XBDevelopTools
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - XBDevelopTools
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  XBDevelopTools: 805c1934144ee1fab39aaccefc15ec2419f9d76c
+
+PODFILE CHECKSUM: 0bf425a32a19a3eba643ce393ef37a5dc99d34e7
+
+COCOAPODS: 1.8.3

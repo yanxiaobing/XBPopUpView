@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7214BBAAF3BDF35AF38CB1A7 /* libPods-XBPopUpViewDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF6D11140E6357426FE6B79 /* libPods-XBPopUpViewDemo.a */; };
 		ED2EA90021272085000DAA80 /* XBPopUpService.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2EA8FF21272085000DAA80 /* XBPopUpService.m */; };
 		ED3AB099236C3D4C00CBB5BD /* XBBasePopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3AB098236C3D4C00CBB5BD /* XBBasePopViewController.m */; };
 		ED3AB09B236C409B00CBB5BD /* XBPopUpView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ED3AB09A236C409A00CBB5BD /* XBPopUpView.podspec */; };
@@ -28,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01F905EF83EE4052D93045C3 /* Pods-XBPopUpViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XBPopUpViewDemo.debug.xcconfig"; path = "Target Support Files/Pods-XBPopUpViewDemo/Pods-XBPopUpViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		648F0DB5D096027600EF6C69 /* Pods-XBPopUpViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XBPopUpViewDemo.release.xcconfig"; path = "Target Support Files/Pods-XBPopUpViewDemo/Pods-XBPopUpViewDemo.release.xcconfig"; sourceTree = "<group>"; };
+		7FF6D11140E6357426FE6B79 /* libPods-XBPopUpViewDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XBPopUpViewDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2EA8FE21272085000DAA80 /* XBPopUpService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBPopUpService.h; sourceTree = "<group>"; };
 		ED2EA8FF21272085000DAA80 /* XBPopUpService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBPopUpService.m; sourceTree = "<group>"; };
 		ED3AB097236C3D4C00CBB5BD /* XBBasePopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBBasePopViewController.h; sourceTree = "<group>"; };
@@ -69,12 +73,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7214BBAAF3BDF35AF38CB1A7 /* libPods-XBPopUpViewDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AF6EF94B8E76FB150C8D8B9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				01F905EF83EE4052D93045C3 /* Pods-XBPopUpViewDemo.debug.xcconfig */,
+				648F0DB5D096027600EF6C69 /* Pods-XBPopUpViewDemo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B6021B18C0E56FE2D4D1F7D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FF6D11140E6357426FE6B79 /* libPods-XBPopUpViewDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ED2EA8FC21271EBB000DAA80 /* PopUpCommon */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +168,8 @@
 			children = (
 				ED7E760621187D9D009ED4B0 /* XBPopUpViewDemo */,
 				ED7E760521187D9D009ED4B0 /* Products */,
+				0AF6EF94B8E76FB150C8D8B9 /* Pods */,
+				B6021B18C0E56FE2D4D1F7D7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,6 +220,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED7E761A21187DA2009ED4B0 /* Build configuration list for PBXNativeTarget "XBPopUpViewDemo" */;
 			buildPhases = (
+				DE086ED84405977FB499FD62 /* [CP] Check Pods Manifest.lock */,
 				ED7E760021187D9D009ED4B0 /* Sources */,
 				ED7E760121187D9D009ED4B0 /* Frameworks */,
 				ED7E760221187D9D009ED4B0 /* Resources */,
@@ -253,6 +279,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DE086ED84405977FB499FD62 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XBPopUpViewDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ED7E760021187D9D009ED4B0 /* Sources */ = {
@@ -410,6 +461,7 @@
 		};
 		ED7E761B21187DA2009ED4B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01F905EF83EE4052D93045C3 /* Pods-XBPopUpViewDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -428,6 +480,7 @@
 		};
 		ED7E761C21187DA2009ED4B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 648F0DB5D096027600EF6C69 /* Pods-XBPopUpViewDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
