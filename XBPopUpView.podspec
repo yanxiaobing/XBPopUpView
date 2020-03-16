@@ -1,7 +1,7 @@
 Pod::Spec.new do |popup|
     popup.name         = 'XBPopUpView'
-    popup.version      = '1.1.0'
-    popup.summary      = '1：增加通过VC基类的方式将弹窗的相关属性内聚，便于使用约束布局，简化使用  2：整理文件目录，调整工程结构'
+    popup.version      = '1.1.1'
+    popup.summary      = '1：添加依赖VC弹出机制'
     popup.homepage     = 'https://github.com/yanxiaobing/XBPopUpView'
     popup.license      = 'MIT'
     popup.authors      = {'XBingo' => 'dove025@qq.com'}
