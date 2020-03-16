@@ -1,5 +1,5 @@
 //
-//  UIViewController+XBCurrent.h
+//  UIViewController+XBPopUp.h
 //  XBPopUpViewDemo
 //
 //  Created by xbingo on 2019/11/5.
@@ -10,7 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (XBCurrent)
+@interface UIViewController (XBPopUp)
+
++(void)load;
+
+// 获取UIViewController的内存地址
+@property (nonatomic ,copy ,readonly) NSString *xb_dependId;
+
 
 + (UIViewController*)xb_currentViewController;
 

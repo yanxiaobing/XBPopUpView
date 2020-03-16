@@ -11,10 +11,7 @@
 
 @interface XBPopUpQueue : NSObject
 
-/**
- 弹窗数组
- */
-@property (nonatomic ,strong) NSMutableArray *popUpQueue;
+-(void)showWithDependId:(NSString *)dependId;
 
 /**
  弹窗队列单例方法

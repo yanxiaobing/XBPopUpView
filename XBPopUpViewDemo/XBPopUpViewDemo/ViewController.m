@@ -17,6 +17,7 @@
 
 #import "XBDevelopTools.h"
 #import "Masonry.h"
+#import "UIViewController+XBPopUp.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -38,6 +39,7 @@
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);
     }];
+    _tableView.hidden = YES;
 }
 
 
@@ -91,10 +93,22 @@
         
         if ([style isEqualToString:@"系统present样式"]) {
             XBTestViewController *test = [XBTestViewController new];
+//            test.dependVCId = [NSString stringWithFormat:@"%p",self];
             test.presentTransitioning = nil;
             test.dismissTransitioning = nil;
             [test showInPopUpQueue:^(XBPopUpViewHideType popUpViewHideType) {
-                
+                ViewController *vc = [ViewController new];
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+            
+            XBTestViewController *test2 = [XBTestViewController new];
+            test2.dependVCId = [NSString stringWithFormat:@"%p",self];
+            test2.presentTransitioning = nil;
+            test2.dismissTransitioning = nil;
+            [test2 showInPopUpQueue:^(XBPopUpViewHideType popUpViewHideType) {
+
+
+
             }];
         }
         
@@ -123,16 +137,19 @@
             /// 1先展示，然后会展示2，隐藏2之后1再展示出来 ，展示完1之后3展示出来
             
             XBTestViewController *test = [XBTestViewController new];
+            test.dependVCId = self.xb_dependId;
             test.des = @"1";
             test.priority = XBPopUpPriorityNormal;
             test.lowerPriorityHidden = YES;
             test.emptyAreaEnabled = YES;
             [test showInPopUpQueue:^(XBPopUpViewHideType popUpViewHideType) {
-                
+                ViewController *vc = [ViewController new];
+                [self.navigationController pushViewController:vc animated:YES];
             }];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 XBTestViewController *test = [XBTestViewController new];
+                test.dependVCId = self.xb_dependId;
                 test.des = @"2";
                 test.priority = XBPopUpPriorityHigh;
                 [test showInPopUpQueue:^(XBPopUpViewHideType popUpViewHideType) {
@@ -142,6 +159,7 @@
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 XBTestViewController *test = [XBTestViewController new];
+                test.dependVCId = self.xb_dependId;
                 test.des = @"3";
                 test.priority = XBPopUpPriorityLow;
                 [test showInPopUpQueue:^(XBPopUpViewHideType popUpViewHideType) {

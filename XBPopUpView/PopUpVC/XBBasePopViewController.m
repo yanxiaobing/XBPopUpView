@@ -8,7 +8,7 @@
 
 #import "XBBasePopViewController.h"
 #import "XBBaseTransition.h"
-#import "UIViewController+XBCurrent.h"
+#import "UIViewController+XBPopUp.h"
 
 @interface XBBasePopViewController ()
 
@@ -19,6 +19,7 @@
 @synthesize willHideBlock = _willHideBlock;
 @synthesize didHidenBlock = _didHidenBlock;
 
+@synthesize dependVCId = _dependVCId;
 @synthesize priority = _priority;
 @synthesize popUpContentView = _popUpContentView;
 @synthesize lowerPriorityHidden = _lowerPriorityHidden;
@@ -42,10 +43,10 @@
         __weak typeof(self) weakSelf = self;
         _willHideBlock = ^(XBPopUpViewHideType popUpViewHideType) {
             [weakSelf dismissViewControllerAnimated:YES completion:^{
-                [weakSelf dismiss];
                 if (weakSelf.didHidenBlock) {
                     weakSelf.didHidenBlock(popUpViewHideType);
                 }
+                [weakSelf dismiss];
             }];
         };
     }
@@ -90,9 +91,7 @@
 }
 
 -(void)dismiss{
-    if ([XBPopUpQueue.sharedService.popUpQueue containsObject:self]) {
-       [[XBPopUpQueue sharedService] removeView:self];
-    }
+    [[XBPopUpQueue sharedService] removeView:self];
 }
 
 -(void)temporarilyDismissAnimated:(BOOL)animated completion:(void (^)(void))completion{

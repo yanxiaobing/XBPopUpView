@@ -7,7 +7,7 @@
 //
 
 #import "XBPopUpViewController.h"
-#import "UIViewController+XBCurrent.h"
+#import "UIViewController+XBPopUp.h"
 
 @interface XBPopUpViewController ()
 

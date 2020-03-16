@@ -7,10 +7,15 @@
 //
 
 #import "XBPopUpQueue.h"
+#import "UIViewController+XBPopUp.h"
+
+#define xb_no_depend_id @"xb_no_depend_id"
 
 @interface XBPopUpQueue()
 
-@property (nonatomic ,strong) id<XBPopUpDelegate> currentPopUpView;
+@property (nonatomic ,strong) NSMutableDictionary<NSString* ,id<XBPopUpDelegate>> *currentPopUpMap;
+
+@property (nonatomic ,strong) NSMutableDictionary<NSString *,NSMutableArray<id<XBPopUpDelegate>> *> *popUpMap;
 
 @end
 
@@ -29,65 +34,143 @@
 {
     self = [super init];
     if (self) {
-        _popUpQueue = [NSMutableArray new];
+        _popUpMap = [NSMutableDictionary new];
+        _currentPopUpMap = [NSMutableDictionary new];
     }
     return self;
 }
 
 - (void)addView:(id<XBPopUpDelegate>)popUpView {
-    if ([self.popUpQueue containsObject:popUpView]) {
-        return;
+    NSString *dependId = nil;
+    if ([popUpView respondsToSelector:@selector(dependVCId)]) {
+        dependId = popUpView.dependVCId;
     }
-    // 将弹窗添加到队列
-    [self.popUpQueue addObject:popUpView];
-    // 队列中只有一个弹窗
-    if (self.popUpQueue.count == 1) {
-        // 展示弹窗，如果lowerPriorityHidden == YES，则赋值给currentPopUpView
-        [self showAndRecordPopUpViewIfNeed:popUpView];
+    if (!dependId) {
+        dependId = xb_no_depend_id;
     }
-    // 队列中有多个弹窗
-    else {
-        // 根据优先级对弹窗进行排序
-        [self sortPopUpQueue];
-        // 队列中有多个弹窗表示目前肯定有弹窗展示着
-        // 如果当前展示的弹窗支持临时隐藏，且当前弹窗非当前队列中第一个弹窗（优先级最高最先添加进来的）
-        if (self.currentPopUpView.lowerPriorityHidden && self.currentPopUpView != self.popUpQueue.firstObject) {
-            __weak typeof(self) weakSelf = self;
-            if ([self.currentPopUpView respondsToSelector:@selector(temporarilyDismissAnimated:completion:)]) {
-                [self.currentPopUpView temporarilyDismissAnimated:YES completion:^{
-                    [weakSelf showAndRecordPopUpViewIfNeed:weakSelf.popUpQueue.firstObject];
-                }];
+    
+    NSMutableArray *popList = [[NSMutableArray alloc] initWithArray:_popUpMap[dependId]];
+    
+    if (![popList containsObject:popUpView]) {
+        
+        [popList addObject:popUpView];
+        
+        _popUpMap[dependId] = popList;
+        
+        if (popList.count == 1) {
+            
+            [self showAndRecordPopUpViewIfNeed:popUpView];
+            
+        }else{
+            // 优先级排序
+            [self sortPopUpQueue:popList];
+            
+            if (self.currentPopUpMap[dependId].lowerPriorityHidden && self.currentPopUpMap[dependId] != popList.firstObject) {
+                __weak typeof(self) weakSelf = self;
+                if ([self.currentPopUpMap[dependId] respondsToSelector:@selector(temporarilyDismissAnimated:completion:)]) {
+                    [self.currentPopUpMap[dependId] temporarilyDismissAnimated:YES completion:^{
+                        
+                        [self.currentPopUpMap removeObjectForKey:dependId];
+                        
+                        [weakSelf showAndRecordPopUpViewIfNeed:popList.firstObject];
+                    }];
+                }
             }
         }
     }
 }
 
 - (void)removeView:(id<XBPopUpDelegate>)popUpView {
-        if ([self.popUpQueue containsObject:popUpView]) {
-            [self.popUpQueue removeObject:popUpView];
-            if (self.popUpQueue.count > 0) {
-                id<XBPopUpDelegate> popUpView = self.popUpQueue.firstObject;
-                if ([popUpView respondsToSelector:@selector(present)]) {
-                    [popUpView present];
-                }
-            }else{
-                self.currentPopUpView = nil;
-            }
-        }
-}
-
--(void)showAndRecordPopUpViewIfNeed:(id<XBPopUpDelegate>)popUpView{
     
-    if ([popUpView respondsToSelector:@selector(present)]) {
-        [popUpView present];
-        if (popUpView.lowerPriorityHidden) {
-            self.currentPopUpView = popUpView;
+    if (!popUpView) {
+        return;
+    }
+    
+    NSString *dependId = nil;
+    if ([popUpView respondsToSelector:@selector(dependVCId)]) {
+        dependId = popUpView.dependVCId;
+    }
+    if (!dependId) {
+        dependId = xb_no_depend_id;
+    }
+    
+    NSMutableArray *popList = [[NSMutableArray alloc] initWithArray:_popUpMap[dependId]];
+    
+    if ([popList containsObject:popUpView]) {
+        
+        [popList removeObject:popUpView];
+        
+        if (popList.count == 0) {
+            
+            [_popUpMap removeObjectForKey:dependId];
+            [_currentPopUpMap removeObjectForKey:dependId];
+            
+        }else{
+            
+            _popUpMap[dependId] = popList;
+            
+            id<XBPopUpDelegate> popUpView = popList.firstObject;
+            
+            if ([popUpView respondsToSelector:@selector(present)]) {
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self showAndRecordPopUpViewIfNeed:popUpView];
+                });
+                
+            }
         }
     }
 }
 
--(void)sortPopUpQueue{
-    [self.popUpQueue sortUsingComparator:^NSComparisonResult(id<XBPopUpDelegate> view1, id<XBPopUpDelegate> view2) {
+-(void)showAndRecordPopUpViewIfNeed:(id<XBPopUpDelegate>)popUpView{
+    
+    if (!popUpView) {
+        return;
+    }
+    
+    NSString *dependId = nil;
+    if ([popUpView respondsToSelector:@selector(dependVCId)]) {
+        dependId = popUpView.dependVCId;
+    }
+    if (!dependId) {
+        dependId = xb_no_depend_id;
+    }
+    
+    BOOL shouldShow = NO;
+    if ([dependId isEqualToString:xb_no_depend_id]) {
+        shouldShow = self.currentPopUpMap[dependId] != popUpView && popUpView == self.popUpMap[dependId].firstObject;
+    }else{
+        BOOL matchDependId = [dependId isEqualToString:[UIViewController xb_currentViewController].xb_dependId];
+        BOOL notSamePopUp = self.currentPopUpMap[dependId] != popUpView;
+        
+        BOOL isFirstPopUp = popUpView == self.popUpMap[dependId].firstObject;
+        
+        shouldShow = matchDependId && notSamePopUp && isFirstPopUp;
+    }
+    
+    if (shouldShow) {
+        if ([popUpView respondsToSelector:@selector(present)]) {
+            self.currentPopUpMap[dependId] = popUpView;
+            [popUpView present];
+        }
+    }
+}
+
+-(void)showWithDependId:(NSString *)dependId{
+    
+    if (!dependId) {
+        return;
+    }
+    
+    if (![_popUpMap.allKeys containsObject:dependId]) {
+        [self showAndRecordPopUpViewIfNeed:_popUpMap[xb_no_depend_id].firstObject];
+    }else{
+        [self showAndRecordPopUpViewIfNeed:_popUpMap[dependId].firstObject];
+    }
+}
+
+-(void)sortPopUpQueue:(NSMutableArray *)popList{
+    [popList sortUsingComparator:^NSComparisonResult(id<XBPopUpDelegate> view1, id<XBPopUpDelegate> view2) {
         if (view1.priority > view2.priority) {
             return NSOrderedAscending;
         }

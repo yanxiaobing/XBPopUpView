@@ -59,12 +59,18 @@
 }
 
 -(void)dismiss{
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 0;
         self.transform = CGAffineTransformMakeScale(0.1, 0.1);
     } completion:^(BOOL finished) {
-        [[XBPopUpQueue sharedService] removeView:self];
+        [[XBPopUpQueue sharedService] removeView:weakSelf];
+        [weakSelf removeFromSuperview];
     }];
+}
+
+-(void)dealloc{
+    NSLog(@"%s",__func__);
 }
 
 @end

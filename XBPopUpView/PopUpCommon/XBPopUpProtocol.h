@@ -81,6 +81,11 @@ typedef void(^XBPopUpViewDidHidenBlock)(XBPopUpViewHideType popUpViewHideType);
 @optional
 
 /**
+弹窗跟页面绑定时，初始化弹窗时请传入VC的内存地址字符串vc.xb_dependId
+*/
+@property (nonatomic ,copy, nullable) NSString *dependVCId;
+
+/**
 作为容器的时候提供，如XBPopUpViewController
 */
 @property (nonatomic ,strong) UIView<XBPopUpViewDelegate> * _Nonnull popUpView;

@@ -6,9 +6,28 @@
 //  Copyright © 2019 xbingo. All rights reserved.
 //
 
-#import "UIViewController+XBCurrent.h"
+#import "UIViewController+XBPopUp.h"
+#import <objc/runtime.h>
+#import "XBPopUpQueue.h"
+#import "XBPopUpProtocol.h"
 
-@implementation UIViewController (XBCurrent)
+@implementation UIViewController (XBPopUp)
+
++(void)load{
+    Method m1 = class_getInstanceMethod([self class], @selector(viewWillAppear:));
+    Method m2 = class_getInstanceMethod([self class], @selector(xb_viewWillAppear:));
+    method_exchangeImplementations(m1, m2);
+}
+
+-(void)xb_viewWillAppear:(BOOL)animated{
+    [self xb_viewWillAppear:animated];
+    
+    [XBPopUpQueue.sharedService showWithDependId:[NSString stringWithFormat:@"%p",self]];
+}
+
+- (NSString *)xb_dependId{
+    return [NSString stringWithFormat:@"%p",self];
+}
 
 + (UIViewController*)xb_currentViewController {
     UIViewController* rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
